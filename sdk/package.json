@@ -1,7 +1,7 @@
 {
-  "name": "@0xsupremedev/x402-sdk",
+  "name": "@fozagtx/x402-sdk",
   "version": "0.3.1",
-  "description": "SolWave x402 Protocol SDK for Solana: AI-powered agent-to-agent payments",
+  "description": "x402Solana x402 Protocol SDK for Solana: AI-powered agent-to-agent payments",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -23,7 +23,7 @@
     "web3",
     "autonomous-agents"
   ],
-  "author": "Supreme Dev <0xsupremedev@gmail.com>",
+  "author": "fozagtx <fozagtx@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.0.0",

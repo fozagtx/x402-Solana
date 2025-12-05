@@ -11,7 +11,7 @@ const INITIAL_MESSAGE: ChatMessage = {
   id: "agent-welcome",
   role: "agent",
   type: "text",
-  content: "Welcome to SolWave. Ask me to buy something or run a payment workflow on Solana.",
+  content: "Welcome to x402Solana. Ask me to buy something or run a payment workflow on Solana.",
   createdAt: new Date().toISOString(),
 };
 

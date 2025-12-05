@@ -91,7 +91,7 @@ export function ChatTranscript({
       {isProcessing && (
         <div className="flex items-center gap-3 text-blue-300 font-mono text-sm">
           <Loader2 className="w-4 h-4 animate-spin" />
-          SolWave is thinking...
+          x402Solana is thinking...
         </div>
       )}
     </div>

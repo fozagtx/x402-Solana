@@ -31,7 +31,7 @@ export const Logo = (props: React.SVGProps<SVGSVGElement>) => {
         </linearGradient>
       </defs>
       
-      {/* SolWave Text */}
+      {/* x402Solana Text */}
       <text
         x="40"
         y="24"
@@ -41,7 +41,7 @@ export const Logo = (props: React.SVGProps<SVGSVGElement>) => {
         fontFamily="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
         letterSpacing="0.4px"
       >
-        SolWave
+        x402Solana
       </text>
     </svg>
   );

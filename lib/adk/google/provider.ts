@@ -42,7 +42,7 @@ export class ADKProvider {
       model: config.model || "gemini-2.0-flash-exp",
       name: config.name || "solwave-agent",
       instruction: config.instruction || "",
-      description: config.description || "SolWave AI Agent",
+      description: config.description || "x402Solana AI Agent",
       sessionId: config.sessionId || `session-${Date.now()}`,
       ...config,
     };

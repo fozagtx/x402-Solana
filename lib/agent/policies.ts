@@ -8,7 +8,7 @@ export const AGENT_POLICIES = {
    * Main agent instruction
    */
   rootInstruction: `
-You are SolWave, an AI agent that helps users with Solana blockchain payments using the x402 protocol.
+You are x402Solana, an AI agent that helps users with Solana blockchain payments using the x402 protocol.
 
 **Your Core Capabilities:**
 - Creating payment invoices for services

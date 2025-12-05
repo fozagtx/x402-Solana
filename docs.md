@@ -1,4 +1,4 @@
-# SolWave - Solana x402 Google ADK Project Documentation
+# x402Solana - Solana x402 Google ADK Project Documentation
 
 ## 📋 Table of Contents
 
@@ -20,7 +20,7 @@
 
 ## 🎯 Project Overview
 
-**SolWave** is an AI-powered payments platform for the autonomous web, built on Solana blockchain with x402 payment protocol integration and Google Agent Development Kit (ADK) support. The platform enables AI agents to request and process payments autonomously, facilitating agent-to-agent commerce.
+**x402Solana** is an AI-powered payments platform for the autonomous web, built on Solana blockchain with x402 payment protocol integration and Google Agent Development Kit (ADK) support. The platform enables AI agents to request and process payments autonomously, facilitating agent-to-agent commerce.
 
 ### Key Technologies
 - **Frontend**: Next.js 15.2.4, React 19, TypeScript
@@ -125,7 +125,7 @@
 ### Core Components
 
 #### 1. Header (`components/header.tsx`)
-- **Logo**: SolWave branding with wave icon
+- **Logo**: x402Solana branding with wave icon
 - **Navigation**: Docs and Chats links with icons
 - **External Links**: GitHub, Telegram, Contact
 - **Mobile Menu**: Responsive hamburger menu
@@ -139,7 +139,7 @@
   - Legal (Terms, Privacy, Cookies)
   - Community (GitHub, Telegram, Discord)
 - **Social Media Icons**: LinkedIn, Discord, YouTube with circular buttons
-- **Copyright**: SolWave branding
+- **Copyright**: x402Solana branding
 
 #### 3. Hero Section (`components/hero.tsx`)
 - **Animated Background**: Three.js particle system
@@ -748,7 +748,7 @@ The project is designed to work even if wallet adapter packages aren't installed
 
 ## 📄 License
 
-This project is part of the SolWave platform. Please refer to the project's LICENSE file for license information.
+This project is part of the x402Solana platform. Please refer to the project's LICENSE file for license information.
 
 ---
 
@@ -760,5 +760,5 @@ Contributions are welcome! Please follow the project's contribution guidelines a
 
 **Last Updated**: November 18, 2025
 **Version**: 1.0.0
-**Project**: SolWave - Solana x402 Google ADK
+**Project**: x402Solana - Solana x402 Google ADK
 

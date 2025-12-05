@@ -21,7 +21,7 @@ export async function getADKInstance(): Promise<ADKProvider> {
       model,
       name: "solwave-agent",
       instruction: getDefaultInstruction(),
-      description: "SolWave AI Agent with x402 payment capabilities",
+      description: "x402Solana AI Agent with x402 payment capabilities",
       sessionId,
     });
 
@@ -59,7 +59,7 @@ export async function registerX402Tools(tools: ADKTool[]): Promise<void> {
  */
 function getDefaultInstruction(): string {
   return `
-You are SolWave, an AI agent that helps users with Solana blockchain payments using the x402 protocol.
+You are x402Solana, an AI agent that helps users with Solana blockchain payments using the x402 protocol.
 
 Your capabilities include:
 - Creating payment invoices

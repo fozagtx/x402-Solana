@@ -1,8 +1,8 @@
-# 🌊 SolWave - AI-Powered Payments for the Autonomous Web
+# 🌊 x402Solana - AI-Powered Payments for the Autonomous Web
 
 <div align="center">
 
-![SolWave](https://img.shields.io/badge/SolWave-x402-blue?style=for-the-badge&logo=solana)
+![x402Solana](https://img.shields.io/badge/x402Solana-x402-blue?style=for-the-badge&logo=solana)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-15.2.4-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
@@ -39,7 +39,7 @@ https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
 
 ## 🎯 Overview
 
-**SolWave** is a complete platform for AI-powered payments on Solana using the x402 payment protocol, Google Agent Development Kit (ADK), and autonomous agents. The platform enables AI agents to request, verify, and execute cryptocurrency payments in real-time — facilitating true agent-to-agent commerce.
+**x402Solana** is a complete platform for AI-powered payments on Solana using the x402 payment protocol, Google Agent Development Kit (ADK), and autonomous agents. The platform enables AI agents to request, verify, and execute cryptocurrency payments in real-time — facilitating true agent-to-agent commerce.
 
 ### Key Capabilities
 
@@ -81,12 +81,12 @@ https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
 
 ## 📦 npm SDK
 
-The TypeScript SDK that powers agent-to-agent payments is published as [`@0xsupremedev/x402-sdk`](https://www.npmjs.com/package/@0xsupremedev/x402-sdk). Use it to invoice agents, build Solana transactions, tap Phantom/Solflare wallets, and integrate x402 flows inside your own apps.
+The TypeScript SDK that powers agent-to-agent payments is published as [`@fozagtx/x402-sdk`](https://www.npmjs.com/package/@fozagtx/x402-sdk). Use it to invoice agents, build Solana transactions, tap Phantom/Solflare wallets, and integrate x402 flows inside your own apps.
 
 ```bash
-npm install @0xsupremedev/x402-sdk @solana/web3.js
+npm install @fozagtx/x402-sdk @solana/web3.js
 # or
-pnpm add @0xsupremedev/x402-sdk @solana/web3.js
+pnpm add @fozagtx/x402-sdk @solana/web3.js
 ```
 
 - Full TypeScript typings with Node + browser parity
@@ -254,8 +254,8 @@ sequenceDiagram
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/0xsupremedev/solwave-x402-adk.git
-cd solwave-x402-adk
+git clone https://github.com/fozagtx/x402solana.git
+cd x402solana
 ```
 
 2. **Install dependencies**
@@ -511,15 +511,15 @@ Content-Type: application/json
 ### Installation
 
 ```bash
-npm install @0xsupremedev/x402-sdk @solana/web3.js
+npm install @fozagtx/x402-sdk @solana/web3.js
 # or
-pnpm add @0xsupremedev/x402-sdk @solana/web3.js
+pnpm add @fozagtx/x402-sdk @solana/web3.js
 ```
 
 ### Basic Usage
 
 ```typescript
-import { createSDK } from '@0xsupremedev/x402-sdk';
+import { createSDK } from '@fozagtx/x402-sdk';
 
 const sdk = createSDK({
   apiUrl: 'http://localhost:3000',
@@ -547,7 +547,7 @@ unwatch();
 #### Client Agent
 
 ```typescript
-import { ADKClient } from '@0xsupremedev/x402-sdk';
+import { ADKClient } from '@fozagtx/x402-sdk';
 
 const client = new ADKClient();
 const buyerAgent = client.createClientAgent('buyer-agent-1', 'user-123');
@@ -638,7 +638,7 @@ See the [`examples/`](./examples/) directory for more complete examples.
 ### Project Structure
 
 ```
-solwave-x402-adk/
+x402solana/
 ├── app/                    # Next.js app directory
 │   ├── api/               # API routes
 │   │   ├── auth/          # Authentication endpoints
@@ -785,16 +785,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact & Support
 
-- **GitHub**: [@0xsupremedev](https://github.com/0xsupremedev)
-- **Email**: 0xsupremedev@gmail.com
-- **Website**: [supremedev.vercel.app](https://supremedev.vercel.app)
+- **GitHub**: [@fozagtx](https://github.com/fozagtx)
+- **Email**: fozagtx@gmail.com
+- **Website**: [fozagtx.vercel.app](https://fozagtx.vercel.app)
 
 ---
 
 <div align="center">
 
-**Built with ❤️ by [0xsupremedev](https://github.com/0xsupremedev)**
+**Built with ❤️ by [fozagtx](https://github.com/fozagtx)**
 
-[⭐ Star this repo](https://github.com/0xsupremedev/solwave-x402-adk) • [🐛 Report Bug](https://github.com/0xsupremedev/solwave-x402-adk/issues) • [💡 Request Feature](https://github.com/0xsupremedev/solwave-x402-adk/issues)
+[⭐ Star this repo](https://github.com/fozagtx/x402solana) • [🐛 Report Bug](https://github.com/fozagtx/x402solana/issues) • [💡 Request Feature](https://github.com/fozagtx/x402solana/issues)
 
 </div>

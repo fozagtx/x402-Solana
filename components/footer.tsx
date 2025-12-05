@@ -53,7 +53,7 @@ export function Footer() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
         {/* Brand Section */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <h3 className="font-sentient text-xl sm:text-2xl mb-3 sm:mb-4 text-white">SolWave</h3>
+          <h3 className="font-sentient text-xl sm:text-2xl mb-3 sm:mb-4 text-white">x402Solana</h3>
           <p className="font-mono text-xs sm:text-sm text-blue-200 mb-4">
             Autonomous Payments for the Next Internet.
           </p>
@@ -167,7 +167,7 @@ export function Footer() {
       {/* Copyright Section */}
       <div className="pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="font-mono text-xs sm:text-sm text-blue-200/80 text-center md:text-left">
-          © {new Date().getFullYear()} SolWave. All rights reserved.
+          © {new Date().getFullYear()} x402Solana. All rights reserved.
         </p>
         <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-mono text-blue-200/80">
           <Link href="/privacy" className="hover:text-blue-100 transition-colors">

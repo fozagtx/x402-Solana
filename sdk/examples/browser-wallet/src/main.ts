@@ -2,7 +2,7 @@ import {
   detectWalletAdapters,
   X402SDK,
   type X402PaymentRequest,
-} from '@0xsupremedev/x402-sdk';
+} from '@fozagtx/x402-sdk';
 
 async function connectWallet() {
   const wallets = detectWalletAdapters();

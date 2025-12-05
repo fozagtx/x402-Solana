@@ -1,22 +1,22 @@
-# @0xsupremedev/x402-sdk
+# @fozagtx/x402-sdk
 
-SolWave x402 Protocol SDK for Solana: **AI-powered agent-to-agent payments**.
+x402Solana x402 Protocol SDK for Solana: **AI-powered agent-to-agent payments**.
 
 This SDK provides a simple, TypeScript-first interface for creating x402 invoices, building Solana transactions, and completing payments for AI agents, merchants, and bots.
 
 ## Installation
 
 ```bash
-npm install @0xsupremedev/x402-sdk @solana/web3.js
+npm install @fozagtx/x402-sdk @solana/web3.js
 # or
-pnpm add @0xsupremedev/x402-sdk @solana/web3.js
+pnpm add @fozagtx/x402-sdk @solana/web3.js
 ```
 
 ## Who is this for?
 
 - **AI agents** that need to initiate and settle payments on Solana.
 - **Merchants** who want x402-style invoices and receipts for their users.
-- **Bot and backend developers** integrating SolWave-style payment flows.
+- **Bot and backend developers** integrating x402Solana-style payment flows.
 
 ## Quick start (Node.js)
 
@@ -25,7 +25,7 @@ import { Keypair } from '@solana/web3.js';
 import {
   X402SDK,
   type X402PaymentRequest,
-} from '@0xsupremedev/x402-sdk';
+} from '@fozagtx/x402-sdk';
 
 const keypair = Keypair.generate();
 
@@ -72,7 +72,7 @@ run().catch(console.error);
 ## Browser usage (Phantom / Solflare / etc.)
 
 ```ts
-import { detectWalletAdapters, X402SDK } from '@0xsupremedev/x402-sdk';
+import { detectWalletAdapters, X402SDK } from '@fozagtx/x402-sdk';
 
 async function initSdk() {
   const wallets = detectWalletAdapters();

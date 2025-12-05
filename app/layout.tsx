@@ -11,7 +11,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SolWave — AI-Powered Payments for the Autonomous Web",
+  title: "x402Solana — AI-Powered Payments for the Autonomous Web",
   description: "Experience real on-chain payments, autonomous agents, and decentralized commerce — all powered by Solana, x402, MCP tools, and the Google ADK.",
   generator: 'v0.app'
 };

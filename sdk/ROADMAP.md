@@ -1,6 +1,6 @@
-# @0xsupremedev/x402-sdk Strategic Roadmap
+# @fozagtx/x402-sdk Strategic Roadmap
 
-This document tracks the long-term roadmap for the SolWave x402 SDK, broken into four execution phases and supporting release milestones.
+This document tracks the long-term roadmap for the x402Solana x402 SDK, broken into four execution phases and supporting release milestones.
 
 ## Phase 1 – Core SDK Enhancements (v0.3.x)
 
@@ -62,7 +62,7 @@ This document tracks the long-term roadmap for the SolWave x402 SDK, broken into
 
 **DX improvements**
 - Maintain strict TypeScript definitions, publish both ESM and CJS bundles, and ensure Node/Browser parity.
-- Continue seamless npm install experience under `@0xsupremedev/x402-sdk`.
+- Continue seamless npm install experience under `@fozagtx/x402-sdk`.
 
 **CLI utilities**
 - Build a `x402` CLI (`npx x402`) supporting invoice creation, status monitoring, and batch transactions.
