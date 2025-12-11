@@ -59,7 +59,7 @@ export class ADKProvider {
 
     try {
       // Try to load Google ADK SDK
-      // @ts-ignore - Dynamic import
+      // @ts-expect-error - Optional dependency - may not be installed
       const { Agent } = await import("@google/adk");
       
       // Create agent with Google ADK

@@ -7,7 +7,7 @@ import { ADKTool } from "../google/provider";
 import { adkTools } from "../tools";
 import { getPaymentFlowAdapter } from "./payment-flow";
 import { createPaymentRequirements, createSinglePaymentRequiredResponse } from "../x402-tools/invoice-tools";
-import { PaymentRequirements } from "../extensions/types";
+// import { PaymentRequirements } from "../extensions/types"; // Unused import
 
 /**
  * Convert existing ADK tools to new ADK format

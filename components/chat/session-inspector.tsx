@@ -6,9 +6,9 @@ import { FileCode, Activity, Database, Package } from "lucide-react";
 
 interface SessionInspectorProps {
   sessionId?: string;
-  traceEvents?: any[];
-  state?: any;
-  artifacts?: any[];
+  traceEvents?: Array<Record<string, unknown>>;
+  state?: Record<string, unknown>;
+  artifacts?: Array<Record<string, unknown>>;
 }
 
 export function SessionInspector({

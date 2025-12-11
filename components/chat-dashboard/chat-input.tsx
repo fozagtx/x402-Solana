@@ -73,14 +73,14 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
       }
     };
 
-    const typeInterval = setInterval(animate, 80);
+    typeInterval = setInterval(animate, 80);
 
     return () => {
       if (typeInterval) clearInterval(typeInterval);
       setIsTyping(false);
       setTypingText("");
     };
-  }, [isFocused, message]);
+  }, [isFocused, message, sampleTexts]);
 
   // Blinking cursor effect
   useEffect(() => {

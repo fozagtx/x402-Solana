@@ -60,7 +60,7 @@ export function Particles({
     m.uniforms.initialPositions.value =
       simulationMaterial.uniforms.positions.value;
     return m;
-  }, [simulationMaterial]);
+  }, [simulationMaterial, target.texture]);
 
   const [scene] = useState(() => new THREE.Scene());
   const [camera] = useState(
@@ -92,7 +92,7 @@ export function Particles({
 
     state.gl.setRenderTarget(target);
     state.gl.clear();
-    // @ts-ignore
+    // @ts-expect-error - Three.js render method typing issue
     state.gl.render(scene, camera);
     state.gl.setRenderTarget(null);
 
@@ -147,7 +147,7 @@ export function Particles({
   return (
     <>
       {createPortal(
-        // @ts-ignore
+        // @ts-expect-error - React Three Fiber typing issue
         <mesh material={simulationMaterial}>
           <bufferGeometry>
             <bufferAttribute
@@ -157,10 +157,10 @@ export function Particles({
             <bufferAttribute attach="attributes-uv" args={[uvs, 2]} />
           </bufferGeometry>
         </mesh>,
-        // @ts-ignore
+        // @ts-expect-error - React Three Fiber scene portal typing
         scene
       )}
-      {/* @ts-ignore */}
+      {/* @ts-expect-error - React Three Fiber points material typing */}
       <points material={dofPointsMaterial} {...props}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[particles, 3]} />

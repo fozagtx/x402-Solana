@@ -13,7 +13,7 @@ interface PaymentMessageProps {
   recipient?: string;
   expiresAt?: string;
   nonce?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export function PaymentMessage({ 
