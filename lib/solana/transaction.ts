@@ -4,10 +4,8 @@ import {
   PublicKey,
   Transaction,
   SystemProgram,
-  sendAndConfirmTransaction,
-  TransactionInstruction,
 } from '@solana/web3.js';
-import { getTokenAccount, getOrCreateAssociatedTokenAccount, createTransferInstruction } from '@solana/spl-token';
+import { getOrCreateAssociatedTokenAccount, createTransferInstruction } from '@solana/spl-token';
 import { getSolanaConnection, getCluster } from './client';
 
 export interface PaymentParams {
@@ -70,7 +68,7 @@ export async function createPaymentTransaction(
 export async function simulateTransaction(
   transaction: Transaction,
   connection?: Connection
-): Promise<{ err: any; logs: string[] }> {
+): Promise<{ err: unknown; logs: string[] }> {
   const conn = connection || getSolanaConnection(getCluster());
   const simulation = await conn.simulateTransaction(transaction);
   return {
@@ -96,4 +94,3 @@ export function getExplorerUrl(signature: string, cluster?: string): string {
   const clusterParam = cluster || getCluster();
   return `https://explorer.solana.com/tx/${signature}?cluster=${clusterParam}`;
 }
-

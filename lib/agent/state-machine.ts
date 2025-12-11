@@ -20,7 +20,7 @@ export interface PaymentStateData {
   txSignature?: string;
   error?: string;
   timestamp: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export type StateTransition = {
@@ -236,4 +236,3 @@ export class InMemoryStatePersistence implements StatePersistence {
     this.storage.delete(id);
   }
 }
-

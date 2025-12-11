@@ -4,7 +4,6 @@
  */
 
 import { getX402Invoice } from "@/lib/x402/invoice";
-import { X402Invoice } from "@/lib/x402/types";
 import { PublicKey } from "@solana/web3.js";
 
 export interface GuardrailConfig {
@@ -312,4 +311,3 @@ export function getGuardrails(config?: GuardrailConfig): PaymentGuardrails {
   }
   return guardrailsInstance;
 }
-

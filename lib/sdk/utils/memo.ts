@@ -1,4 +1,4 @@
-import { Transaction, SystemProgram, PublicKey } from '@solana/web3.js';
+import { Transaction, PublicKey } from '@solana/web3.js';
 
 /**
  * Memo prefix for x402 invoice IDs
@@ -51,4 +51,3 @@ export function addInvoiceMemoToTransaction(
   tx.add(memoInstruction);
   return tx;
 }
-

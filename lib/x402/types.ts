@@ -7,7 +7,7 @@ export interface X402Invoice {
   txSignature?: string;
   expiresAt: string; // ISO timestamp
   createdAt: string; // ISO timestamp
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   nonce: string;
 }
 
@@ -18,7 +18,7 @@ export interface X402PaymentRequest {
   recipient: string; // Solana address
   nonce: string;
   expiresAt: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface X402PaymentReceipt {
@@ -30,4 +30,3 @@ export interface X402PaymentReceipt {
   confirmedAt?: string;
   blockTime?: number;
 }
-

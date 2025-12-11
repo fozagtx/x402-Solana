@@ -1,6 +1,6 @@
-import { PublicKey, Connection } from '@solana/web3.js';
+import { Connection } from '@solana/web3.js';
 import { WalletSigner } from './wallet/signers';
-import { buildTransaction, BuildTransactionOptions } from './payments/buildTransaction';
+import { buildTransaction } from './payments/buildTransaction';
 import { submitAndConfirmTransaction, confirmPayment } from './payments/confirmPayment';
 import { sendPaymentProof, PaymentProof } from './agents/sendPaymentProof';
 import { X402PaymentRequest } from '@/lib/x402/types';
@@ -50,7 +50,7 @@ export class X402SDK {
     merchantId: string;
     amount: string;
     token?: string;
-    metadata?: Record<string, any>;
+    metadata?: Record<string, unknown>;
   }) {
     return this.request('/api/v1/invoices', {
       method: 'POST',
@@ -69,7 +69,7 @@ export class X402SDK {
 
   async watchInvoice(
     invoiceId: string,
-    callback: (invoice: any) => void,
+    callback: (invoice: Record<string, unknown>) => void,
     interval: number = 2000
   ): Promise<() => void> {
     let isWatching = true;
@@ -184,4 +184,3 @@ export class X402SDK {
 export function createSDK(config?: SDKConfig): X402SDK {
   return new X402SDK(config);
 }
-

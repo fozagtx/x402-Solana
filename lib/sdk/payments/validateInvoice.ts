@@ -1,4 +1,3 @@
-import { PublicKey } from '@solana/web3.js';
 import { X402PaymentRequest } from '@/lib/x402/types';
 import { sanitizeAddress, getTokenMint } from '@/lib/sdk/utils/solana';
 
@@ -35,8 +34,9 @@ export function validateInvoice(invoice: X402PaymentRequest): InvoiceValidationR
   } else {
     try {
       getTokenMint(invoice.token);
-    } catch (error: any) {
-      errors.push(`Invalid token: ${error.message}`);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown token error';
+      errors.push(`Invalid token: ${message}`);
     }
   }
 
@@ -46,8 +46,9 @@ export function validateInvoice(invoice: X402PaymentRequest): InvoiceValidationR
   } else {
     try {
       sanitizeAddress(invoice.recipient);
-    } catch (error: any) {
-      errors.push(`Invalid recipient address: ${error.message}`);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown recipient error';
+      errors.push(`Invalid recipient address: ${message}`);
     }
   }
 
@@ -116,4 +117,3 @@ export function validateTokenMint(actual: string, expected: string): boolean {
     return false;
   }
 }
-

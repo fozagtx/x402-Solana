@@ -57,7 +57,7 @@ export async function confirmPayment(
 
   try {
     // Wait for confirmation with timeout
-    const confirmation = await Promise.race([
+    await Promise.race([
       conn.confirmTransaction(signature, commitment),
       new Promise<never>((_, reject) => 
         setTimeout(() => reject(new Error('Transaction confirmation timeout')), timeout)
@@ -84,11 +84,11 @@ export async function confirmPayment(
       slot: tx.slot,
       blockTime: tx.blockTime || undefined,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       confirmed: false,
       signature,
-      error: error.message || 'Transaction confirmation failed',
+      error: error instanceof Error ? error.message : 'Transaction confirmation failed',
     };
   }
 }
@@ -142,4 +142,3 @@ export async function waitForConfirmation(
     error: 'Confirmation timeout',
   };
 }
-

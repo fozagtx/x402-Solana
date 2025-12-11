@@ -26,13 +26,17 @@ export function constantTimeCompare(a: string, b: string): boolean {
   return crypto.timingSafeEqual(bufferA, bufferB);
 }
 
-export function signJwt(payload: Record<string, any>, secret: string, expiresInSeconds: number) {
+export function signJwt(
+  payload: Record<string, unknown>,
+  secret: string,
+  expiresInSeconds: number
+) {
   const header = {
     alg: 'HS256',
     typ: 'JWT',
   };
 
-  const encode = (obj: Record<string, any>) =>
+  const encode = (obj: Record<string, unknown>) =>
     Buffer.from(JSON.stringify(obj)).toString('base64url');
 
   const unsigned = `${encode(header)}.${encode({
@@ -49,7 +53,7 @@ export function signJwt(payload: Record<string, any>, secret: string, expiresInS
   return `${unsigned}.${signature}`;
 }
 
-export function verifyJwt<T = Record<string, any>>(token: string, secret: string): T | null {
+export function verifyJwt<T = Record<string, unknown>>(token: string, secret: string): T | null {
   const [headerB64, payloadB64, signature] = token.split('.');
   if (!headerB64 || !payloadB64 || !signature) {
     return null;
@@ -74,4 +78,3 @@ export function verifyJwt<T = Record<string, any>>(token: string, secret: string
 
   return payload;
 }
-

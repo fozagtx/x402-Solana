@@ -1,4 +1,4 @@
-import { Connection, Keypair, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { getSolanaConnection, getCluster } from './client';
 
 export async function requestAirdrop(
@@ -30,4 +30,3 @@ export async function getBalance(address: string): Promise<number> {
   const balance = await connection.getBalance(publicKey);
   return balance / LAMPORTS_PER_SOL; // Convert lamports to SOL
 }
-

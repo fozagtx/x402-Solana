@@ -31,7 +31,7 @@ interface RouteOptions<TBody> {
 interface RegisteredRoute {
   handler: McpHandler;
   requireAuth: boolean;
-  schema?: ZodSchema<any>;
+  schema?: ZodSchema<unknown>;
 }
 
 export interface RouterOptions {
@@ -199,4 +199,3 @@ export const paginationSchema = z.object({
   limit: z.coerce.number().min(1).max(100).default(20),
   cursor: z.string().optional(),
 });
-

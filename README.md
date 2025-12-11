@@ -13,11 +13,7 @@
 [Features](#-features) • [Quick Start](#-quick-start) • [Documentation](#-documentation) • [Architecture](#-architecture) • [Contributing](#-contributing)
 
 </div>
-
 ---
-
-https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
-
 
 ## Table of Contents
 
@@ -60,7 +56,7 @@ https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
 - **x402 Payment Protocol**: Invoice creation, payment requests, and verification
 - **Solana Integration**: Transaction creation, signing, and on-chain verification
 - **AI Agent Integration**: Client and merchant agent templates with chat UI (OpenAI via Vercel AI SDK)
-- **Authentication**: NextAuth.js with email/password and OAuth (Google/GitHub)
+- **Authentication**: NextAuth.js with email/password
 - **User Dashboards**: Profile, API keys, and wallet management
 - **Merchant Dashboard**: Settings, invoices, and transaction management
 - **Telegram Bot**: Webhook handler for Telegram integration
@@ -304,15 +300,6 @@ NEXTAUTH_SECRET="your-secret-key-change-in-production"
 SOLANA_CLUSTER="devnet"
 SOLANA_RPC_URL="https://api.devnet.solana.com"
 
-# Optional: OAuth providers
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
-GITHUB_CLIENT_ID=""
-GITHUB_CLIENT_SECRET=""
-
-# Optional: Telegram Bot
-TELEGRAM_BOT_TOKEN=""
-TELEGRAM_WEBHOOK_URL=""
 ```
 
 4. **Set up the database**
@@ -524,7 +511,6 @@ Content-Type: application/json
 
 - `GET /api/auth/signin` - Sign in page
 - `GET /api/auth/signout` - Sign out
-- `GET /api/auth/callback/:provider` - OAuth callback
 - `GET /api/auth/session` - Get current session
 - `POST /api/auth/csrf` - Get CSRF token
 

@@ -1,6 +1,7 @@
 import { db } from "@/lib/db/client";
 import { createX402Invoice, getX402Invoice } from "@/lib/x402/invoice";
 import type { X402Invoice } from "@/lib/x402/types";
+import type { InvoiceStatus } from "@prisma/client";
 import crypto from "crypto";
 import { verifyPaymentReceipt, pollTransactionConfirmation } from "@/lib/solana/verification";
 
@@ -47,7 +48,9 @@ export class PaymentService {
     const invoices = await db.invoice.findMany({
       where: {
         ...(filter.merchantId ? { merchantId: filter.merchantId } : {}),
-        ...(filter.status ? { status: filter.status.toUpperCase() as any } : {}),
+        ...(filter.status
+          ? { status: filter.status.toUpperCase() as InvoiceStatus }
+          : {}),
       },
       take: limit + 1,
       skip: filter.cursor ? 1 : 0,
@@ -216,4 +219,3 @@ function signPayload(body: string, secret: string) {
 }
 
 export const paymentService = new PaymentService();
-

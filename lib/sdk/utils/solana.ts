@@ -1,8 +1,8 @@
 import { 
   PublicKey, 
   Connection, 
-  SystemProgram,
-  LAMPORTS_PER_SOL 
+  LAMPORTS_PER_SOL,
+  TransactionInstruction
 } from '@solana/web3.js';
 import { 
   getAssociatedTokenAddress, 
@@ -30,11 +30,15 @@ export function isValidAddress(address: string): boolean {
  */
 export async function getOrCreateATA(
   mint: PublicKey,
-  owner: PublicKey,
-  connection?: Connection
+  owner: PublicKey
 ): Promise<PublicKey> {
-  const conn = connection || getSolanaConnection();
-  return getAssociatedTokenAddress(mint, owner, false, TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID);
+  return getAssociatedTokenAddress(
+    mint,
+    owner,
+    false,
+    TOKEN_PROGRAM_ID,
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
 }
 
 /**
@@ -45,17 +49,24 @@ export async function createATAIfNeeded(
   owner: PublicKey,
   payer: PublicKey,
   connection?: Connection
-): Promise<{ instruction: any | null; ata: PublicKey }> {
+): Promise<{ instruction: TransactionInstruction | null; ata: PublicKey }> {
   const conn = connection || getSolanaConnection();
-  const ata = await getOrCreateATA(mint, owner, conn);
+  const ata = await getOrCreateATA(mint, owner);
   
   try {
     await getAccount(conn, ata);
     // Account exists, no instruction needed
     return { instruction: null, ata };
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Account doesn't exist, create instruction
-    if (error.code === 'TokenAccountNotFoundError' || error.name === 'TokenAccountNotFoundError') {
+    const isTokenAccountMissing =
+      typeof error === 'object' &&
+      error !== null &&
+      ('code' in error || 'name' in error) &&
+      ((error as { code?: string }).code === 'TokenAccountNotFoundError' ||
+        (error as { name?: string }).name === 'TokenAccountNotFoundError');
+
+    if (isTokenAccountMissing) {
       const instruction = createAssociatedTokenAccountInstruction(
         payer,
         ata,
@@ -91,7 +102,8 @@ export function sanitizeAddress(address: string): PublicKey {
   try {
     return new PublicKey(address);
   } catch (error) {
-    throw new Error(`Invalid Solana address: ${address}`);
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Invalid Solana address: ${address} (${message})`);
   }
 }
 
@@ -121,4 +133,3 @@ export function getTokenMint(symbolOrAddress: string): PublicKey {
   
   throw new Error(`Unknown token: ${symbolOrAddress}`);
 }
-

@@ -2,18 +2,14 @@ import {
   Transaction, 
   PublicKey, 
   SystemProgram,
-  Connection,
-  TransactionInstruction
+  Connection
 } from '@solana/web3.js';
 import { 
   createTransferInstruction,
-  getAssociatedTokenAddress,
   TOKEN_PROGRAM_ID,
-  ASSOCIATED_TOKEN_PROGRAM_ID,
   getMint
 } from '@solana/spl-token';
 import { X402PaymentRequest } from '@/lib/x402/types';
-import { WalletSigner } from '@/lib/sdk/wallet/signers';
 import { sanitizeAddress, getTokenMint, getOrCreateATA, createATAIfNeeded } from '@/lib/sdk/utils/solana';
 import { addInvoiceMemoToTransaction } from '@/lib/sdk/utils/memo';
 import { validateInvoice } from './validateInvoice';
@@ -129,7 +125,7 @@ export async function buildTransaction(
   return {
     transaction,
     needsATA: !isSOL,
-    ataAddress: !isSOL ? await getOrCreateATA(tokenMint, payer, conn) : undefined,
+    ataAddress: !isSOL ? await getOrCreateATA(tokenMint, payer) : undefined,
   };
 }
 
@@ -141,19 +137,21 @@ export async function estimateTransactionFee(
   connection?: Connection
 ): Promise<number> {
   const conn = connection || getSolanaConnection();
-  
-  // Get transaction size
+  const fee = await conn.getFeeForMessage(transaction.compileMessage());
+
+  if (fee.value !== null) {
+    return fee.value;
+  }
+
+  // Fallback estimate based on transaction size
   const serialized = transaction.serialize({
     requireAllSignatures: false,
     verifySignatures: false,
   });
-  
-  // Fee is based on transaction size
-  // Base fee: 5000 lamports, + fee per signature (5000), + fee per byte (rent)
+
   const baseFee = 5000;
   const signatureFee = transaction.signatures.length * 5000;
   const sizeFee = Math.ceil(serialized.length / 1000) * 5000;
-  
+
   return baseFee + signatureFee + sizeFee;
 }
-

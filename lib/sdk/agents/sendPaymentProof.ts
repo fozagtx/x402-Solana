@@ -1,4 +1,4 @@
-import { PublicKey, TransactionSignature } from '@solana/web3.js';
+import { TransactionSignature } from '@solana/web3.js';
 import { X402PaymentReceipt } from '@/lib/x402/types';
 
 export interface PaymentProof {
@@ -46,7 +46,7 @@ export async function sendPaymentProof(
       const error = await response.json().catch(() => ({ error: 'Failed to send payment proof' }));
       throw new Error(error.error || 'Failed to send payment proof');
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error sending payment proof to agent:', error);
     // Don't throw - payment is confirmed, just logging failed
     // Agent can poll for payment status if needed
@@ -67,4 +67,3 @@ export function proofToReceipt(proof: PaymentProof): X402PaymentReceipt {
     blockTime: proof.blockTime,
   };
 }
-

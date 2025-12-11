@@ -1,5 +1,4 @@
 import { WalletSigner } from './signers';
-import { PublicKey } from '@solana/web3.js';
 
 /**
  * Wallet detection and connection utilities
@@ -25,18 +24,26 @@ export const WALLET_PRIORITY: WalletName[] = [
  */
 export function isWalletInstalled(name: WalletName): boolean {
   if (typeof window === 'undefined') return false;
+  type WalletWindow = Window & {
+    solana?: { isPhantom?: boolean };
+    solflare?: unknown;
+    backpack?: unknown;
+    glow?: unknown;
+    Slope?: unknown;
+  };
+  const walletWindow = window as WalletWindow;
   
   switch (name) {
     case 'phantom':
-      return !!(window as any).solana?.isPhantom;
+      return !!walletWindow.solana?.isPhantom;
     case 'solflare':
-      return !!(window as any).solflare;
+      return !!walletWindow.solflare;
     case 'backpack':
-      return !!(window as any).backpack;
+      return !!walletWindow.backpack;
     case 'glow':
-      return !!(window as any).glow;
+      return !!walletWindow.glow;
     case 'slope':
-      return !!(window as any).Slope;
+      return !!walletWindow.Slope;
     case 'ledger':
       // Ledger requires hardware connection, check differently
       return false; // Will be handled by wallet adapter
@@ -63,21 +70,31 @@ export function getBestAvailableWallet(): WalletName | null {
 /**
  * Convert wallet adapter signer to WalletSigner interface
  */
-export function adapterToSigner(adapter: any): WalletSigner | null {
-  if (!adapter || !adapter.publicKey) {
+export function adapterToSigner(adapter: unknown): WalletSigner | null {
+  if (
+    !adapter ||
+    typeof adapter !== 'object' ||
+    !('publicKey' in adapter)
+  ) {
     return null;
   }
 
+  const walletAdapter = adapter as {
+    publicKey: WalletSigner['publicKey'];
+    signTransaction?: (tx: Parameters<WalletSigner['signTransaction']>[0]) => Promise<Parameters<WalletSigner['signTransaction']>[0]>;
+    signAllTransactions?: (txs: Parameters<NonNullable<WalletSigner['signAllTransactions']>>[0]) => Promise<Parameters<NonNullable<WalletSigner['signAllTransactions']>>[0]>;
+  };
+
   return {
-    publicKey: adapter.publicKey,
+    publicKey: walletAdapter.publicKey,
     signTransaction: async (tx) => {
-      if (!adapter.signTransaction) {
+      if (!walletAdapter.signTransaction) {
         throw new Error('Wallet adapter does not support signTransaction');
       }
-      return adapter.signTransaction(tx);
+      return walletAdapter.signTransaction(tx);
     },
-    signAllTransactions: adapter.signAllTransactions
-      ? async (txs) => adapter.signAllTransactions(txs)
+    signAllTransactions: walletAdapter.signAllTransactions
+      ? async (txs) => walletAdapter.signAllTransactions(txs)
       : undefined,
   };
 }
@@ -111,4 +128,3 @@ export function getWalletInstallUrl(name: WalletName): string {
   };
   return urls[name];
 }
-

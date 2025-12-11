@@ -18,7 +18,7 @@ export interface WalletSigner {
 /**
  * Check if an object implements the WalletSigner interface
  */
-export function isWalletSigner(obj: any): obj is WalletSigner {
+export function isWalletSigner(obj: unknown): obj is WalletSigner {
   return (
     obj &&
     typeof obj === 'object' &&
@@ -26,4 +26,3 @@ export function isWalletSigner(obj: any): obj is WalletSigner {
     typeof obj.signTransaction === 'function'
   );
 }
-

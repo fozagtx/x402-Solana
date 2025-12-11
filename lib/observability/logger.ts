@@ -9,7 +9,7 @@ export interface LogEntry {
   level: LogLevel;
   message: string;
   timestamp: Date;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   userId?: string;
   agentId?: string;
   invoiceId?: string;
@@ -36,7 +36,7 @@ class Logger {
     }
   }
 
-  debug(message: string, metadata?: Record<string, any>) {
+  debug(message: string, metadata?: Record<string, unknown>) {
     this.log({
       level: LogLevel.DEBUG,
       message,
@@ -45,7 +45,7 @@ class Logger {
     });
   }
 
-  info(message: string, metadata?: Record<string, any>) {
+  info(message: string, metadata?: Record<string, unknown>) {
     this.log({
       level: LogLevel.INFO,
       message,
@@ -54,7 +54,7 @@ class Logger {
     });
   }
 
-  warn(message: string, metadata?: Record<string, any>) {
+  warn(message: string, metadata?: Record<string, unknown>) {
     this.log({
       level: LogLevel.WARN,
       message,
@@ -63,7 +63,7 @@ class Logger {
     });
   }
 
-  error(message: string, metadata?: Record<string, any>) {
+  error(message: string, metadata?: Record<string, unknown>) {
     this.log({
       level: LogLevel.ERROR,
       message,
@@ -103,4 +103,3 @@ class Logger {
 }
 
 export const logger = new Logger();
-

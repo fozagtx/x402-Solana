@@ -1,4 +1,4 @@
-import { Connection, PublicKey } from '@solana/web3.js';
+import { PublicKey } from '@solana/web3.js';
 import { getSolanaConnection, getCluster } from './client';
 
 export interface TransactionVerification {
@@ -6,7 +6,7 @@ export interface TransactionVerification {
   signature: string;
   slot?: number;
   blockTime?: number;
-  err?: any;
+  err?: unknown;
 }
 
 export async function pollTransactionConfirmation(
@@ -45,7 +45,7 @@ export async function pollTransactionConfirmation(
 
       // Wait before next attempt
       await new Promise((resolve) => setTimeout(resolve, intervalMs));
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(`Error polling transaction ${signature}:`, error);
       // Continue polling
     }
@@ -80,13 +80,18 @@ export async function verifyPaymentReceipt(
     }
 
     // Verify recipient received the expected amount
-    const recipientPubkey = new PublicKey(expectedRecipient);
+    let recipientPubkey: PublicKey;
+    try {
+      recipientPubkey = new PublicKey(expectedRecipient);
+    } catch {
+      return { valid: false, error: 'Invalid recipient address' };
+    }
     const preBalances = tx.meta?.preBalances || [];
     const postBalances = tx.meta?.postBalances || [];
 
     // Find recipient account index
     const recipientIndex = tx.transaction.message.accountKeys.findIndex(
-      (key) => key.toBase58() === expectedRecipient
+      (key) => key.equals(recipientPubkey)
     );
 
     if (recipientIndex === -1) {
@@ -111,4 +116,3 @@ export async function verifyPaymentReceipt(
     };
   }
 }
-

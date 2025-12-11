@@ -8,7 +8,7 @@ export interface Invoice {
   txSignature?: string;
   expiresAt: string;
   createdAt: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   nonce: string;
 }
 
@@ -16,7 +16,7 @@ export interface CreateInvoiceParams {
   merchantId: string;
   amount: string;
   token?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface ListInvoicesParams {
@@ -25,4 +25,3 @@ export interface ListInvoicesParams {
   limit?: number;
   offset?: number;
 }
-

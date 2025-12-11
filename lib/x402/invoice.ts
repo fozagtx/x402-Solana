@@ -6,7 +6,7 @@ export async function createX402Invoice(
   merchantId: string,
   amount: string,
   token: string = 'USDC',
-  metadata?: Record<string, any>,
+  metadata?: Record<string, unknown>,
   expiresInSeconds: number = 3600
 ): Promise<X402Invoice> {
   // Generate nonce for replay protection
@@ -38,7 +38,7 @@ export async function createX402Invoice(
     merchantId: invoice.merchantId,
     amount: invoice.amount,
     token: invoice.token,
-    status: invoice.status.toLowerCase() as any,
+    status: invoice.status.toLowerCase() as X402Invoice['status'],
     expiresAt: invoice.expiresAt.toISOString(),
     createdAt: invoice.createdAt.toISOString(),
     metadata: invoice.metadata ? JSON.parse(invoice.metadata) : undefined,
@@ -75,7 +75,7 @@ export async function getX402Invoice(invoiceId: string): Promise<X402Invoice | n
     merchantId: invoice.merchantId,
     amount: invoice.amount,
     token: invoice.token,
-    status: invoice.status.toLowerCase() as any,
+    status: invoice.status.toLowerCase() as X402Invoice['status'],
     txSignature: invoice.txSignature || undefined,
     expiresAt: invoice.expiresAt.toISOString(),
     createdAt: invoice.createdAt.toISOString(),
@@ -98,4 +98,3 @@ export function createX402PaymentRequest(
     metadata: invoice.metadata,
   };
 }
-
