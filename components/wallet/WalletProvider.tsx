@@ -10,6 +10,9 @@ import {
   SolflareWalletAdapter,
   LedgerWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
+import { BackpackWalletAdapter } from "@solana/wallet-adapter-backpack";
+import { GlowWalletAdapter } from "@solana/wallet-adapter-glow";
+import { SlopeWalletAdapter } from "@solana/wallet-adapter-slope";
 
 // Import styles
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -35,6 +38,9 @@ export function WalletProvider({ children }: WalletProviderProps) {
     const walletAdapters = [
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
+      new BackpackWalletAdapter(),
+      new GlowWalletAdapter(),
+      new SlopeWalletAdapter(),
       new LedgerWalletAdapter(),
     ];
 
