@@ -1,20 +1,15 @@
 "use client";
 
 import { ReactNode, useMemo } from "react";
-import { clusterApiUrl, Connection } from "@solana/web3.js";
+import { clusterApiUrl } from "@solana/web3.js";
 import { ConnectionProvider, WalletProvider as SolanaWalletProvider } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import {
   PhantomWalletAdapter,
-  SolflareWalletAdapter
+  SolflareWalletAdapter,
+  LedgerWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-
-// Import optional wallet adapters
-import { BackpackWalletAdapter } from "@solana/wallet-adapter-backpack";
-import { GlowWalletAdapter } from "@solana/wallet-adapter-glow";
-import { SlopeWalletAdapter } from "@solana/wallet-adapter-slope";
-import { LedgerWalletAdapter } from "@solana/wallet-adapter-ledger";
 
 // Import styles
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -40,9 +35,6 @@ export function WalletProvider({ children }: WalletProviderProps) {
     const walletAdapters = [
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
-      new BackpackWalletAdapter(),
-      new GlowWalletAdapter(),
-      new SlopeWalletAdapter(),
       new LedgerWalletAdapter(),
     ];
 
