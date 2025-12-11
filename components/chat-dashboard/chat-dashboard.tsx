@@ -14,7 +14,7 @@ import { useAdkChat } from "@/hooks/useAdkChat";
 import { AlertCircle } from "lucide-react";
 
 export function ChatDashboard() {
-  const [hovering, setHovering] = useState(false);
+  const [hovering] = useState(false);
   const {
     messages,
     sendMessage,

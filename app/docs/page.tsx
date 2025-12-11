@@ -213,7 +213,7 @@ export default function DocsPage() {
             <div className="mt-6">
               <h3 className="font-sentient text-xl mb-3 text-blue-100">Flow overview:</h3>
               <ol className="space-y-2 font-mono text-sm text-blue-200 list-decimal list-inside ml-4">
-                <li>User interacts with the Frontend (eg. "I want to buy banana").</li>
+                <li>User interacts with the Frontend (eg. &ldquo;I want to buy banana&rdquo;).</li>
                 <li>Client Agent constructs an x402 payment request targeted at the Merchant Agent.</li>
                 <li>Merchant Agent responds with payment instructions (amount, token, address, or a prepared transaction).</li>
                 <li>Client signs and submits the transaction to Solana (via wallet / MCP helper / simulated signer).</li>
@@ -507,12 +507,12 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
             <div>
               <h3 className="font-sentient text-xl mb-3 text-blue-100">Example 1 — Basic buyer flow (UI + Phantom wallet)</h3>
               <ol className="space-y-2 font-mono text-sm text-blue-200 list-decimal list-inside ml-4">
-                <li>User types in the UI: "I want to buy banana".</li>
+                <li>User types in the UI: &ldquo;I want to buy banana&rdquo;.</li>
                 <li>Client agent constructs a purchase intent and asks merchant agent for price.</li>
                 <li>Merchant replies with x402 payment request: 5 USDC to merchantAddress.</li>
                 <li>Frontend opens Phantom signature modal with a token transfer transaction (or uses prepare-payment to get a prepared transaction).</li>
                 <li>User confirms and signs in Phantom; the tx is submitted to Solana.</li>
-                <li>Merchant observes the tx signature, validates token amount, and replies: "Your order is being prepared".</li>
+                <li>Merchant observes the tx signature, validates token amount, and replies: &ldquo;Your order is being prepared&rdquo;.</li>
               </ol>
             </div>
           </div>
@@ -576,7 +576,7 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
         <section id="contributing" className="mb-16 scroll-mt-20">
           <h2 className="font-sentient text-3xl mb-6 text-white">14. Contributing</h2>
           <p className="font-mono text-blue-200">
-            Contributions are welcome! Please follow the project's contribution guidelines and submit pull requests for any improvements.
+            Contributions are welcome! Please follow the project&apos;s contribution guidelines and submit pull requests for any improvements.
           </p>
         </section>
 
@@ -584,7 +584,7 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
         <section id="license" className="mb-16 scroll-mt-20">
           <h2 className="font-sentient text-3xl mb-6 text-white">15. License</h2>
           <p className="font-mono text-blue-200">
-            Please refer to the project's LICENSE file for license information.
+            Please refer to the project&apos;s LICENSE file for license information.
           </p>
         </section>
       </div>

@@ -73,7 +73,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
       }
     };
 
-    typeInterval = setInterval(animate, 80);
+    const typeInterval = setInterval(animate, 80);
 
     return () => {
       if (typeInterval) clearInterval(typeInterval);

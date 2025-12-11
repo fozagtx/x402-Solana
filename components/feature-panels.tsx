@@ -1,6 +1,6 @@
 "use client";
 
-import { Coins, Brain, Link2, ArrowRight } from "lucide-react";
+import { Coins, Brain, Link2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 

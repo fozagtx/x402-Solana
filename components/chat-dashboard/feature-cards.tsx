@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link2, Music, Building2, Square } from "lucide-react";
+import { Link2, Music, Building2 } from "lucide-react";
 
 export function FeatureCards() {
   return (

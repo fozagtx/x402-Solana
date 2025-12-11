@@ -1,26 +1,14 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
-import { PublicKey } from "@solana/web3.js";
+import { useState, useCallback } from "react";
+import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { X402PaymentRequest } from "@/lib/x402/types";
 import { PaymentConfirmation } from "./PaymentConfirmation";
 import { buildTransaction } from "@/lib/sdk/payments/buildTransaction";
 import { submitAndConfirmTransaction, confirmPayment } from "@/lib/sdk/payments/confirmPayment";
 import { sendPaymentProof } from "@/lib/sdk/agents/sendPaymentProof";
-import { adapterToSigner } from "@/lib/sdk/wallet";
 import { Button } from "@/components/ui/button";
 import { Wallet, Loader2, CheckCircle, AlertCircle } from "lucide-react";
-
-// Dynamic import helper
-function safeRequire(moduleName: string): any {
-  if (typeof window === 'undefined') return null;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    return require(moduleName);
-  } catch {
-    return null;
-  }
-}
 
 interface PayWithWalletProps {
   invoice: X402PaymentRequest;
@@ -29,35 +17,6 @@ interface PayWithWalletProps {
 }
 
 export function PayWithWallet({ invoice, onSuccess, onError }: PayWithWalletProps) {
-  const [walletHooks, setWalletHooks] = useState<any>(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const walletAdapterReact = safeRequire("@solana/wallet-adapter-react");
-      if (walletAdapterReact) {
-        setWalletHooks({
-          useWallet: walletAdapterReact.useWallet,
-          useConnection: walletAdapterReact.useConnection,
-        });
-      }
-    }
-  }, []);
-
-  // If wallet adapters are not installed, show error message
-  if (!walletHooks) {
-    return (
-      <div className="p-4 rounded-lg bg-yellow-900/30 border border-yellow-500/50">
-        <p className="font-mono text-sm text-yellow-300 mb-2">
-          Wallet adapter packages not installed.
-        </p>
-        <p className="font-mono text-xs text-yellow-400">
-          Please install @solana/wallet-adapter-react and related packages. See WALLET_SETUP.md for instructions.
-        </p>
-      </div>
-    );
-  }
-
-  const { useWallet, useConnection } = walletHooks;
   const { publicKey, signTransaction, connected } = useWallet();
   const { connection } = useConnection();
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -123,10 +82,10 @@ export function PayWithWallet({ invoice, onSuccess, onError }: PayWithWalletProp
       setTxSignature(signature);
       setShowConfirmation(false);
       onSuccess?.(signature);
-    } catch (err: any) {
-      const errorMessage = err.message || "Payment failed";
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Payment failed";
       setError(errorMessage);
-      onError?.(err);
+      onError?.(err instanceof Error ? err : new Error(errorMessage));
     } finally {
       setIsProcessing(false);
     }
@@ -213,4 +172,3 @@ export function PayWithWallet({ invoice, onSuccess, onError }: PayWithWalletProp
     </>
   );
 }
-

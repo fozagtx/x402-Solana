@@ -18,7 +18,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-sentient mb-4">Disclaimer</h2>
           <p className="mb-4">
-            The materials on this platform are provided on an 'as is' basis. We make no warranties, expressed or implied.
+            The materials on this platform are provided on an &apos;as is&apos; basis. We make no warranties, expressed or implied.
           </p>
         </section>
         <section>

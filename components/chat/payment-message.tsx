@@ -1,6 +1,6 @@
 "use client";
 
-import { Coins, CheckCircle, ExternalLink } from "lucide-react";
+import { Coins, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { PayWithWallet } from "@/components/flows/PayWithWallet";
 import { X402PaymentRequest } from "@/lib/x402/types";
