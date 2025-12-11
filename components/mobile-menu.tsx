@@ -72,16 +72,6 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
                 </Link>
               );
             })}
-
-            <div className="mt-6 pt-6 border-t-2 border-gray-300">
-              <Link
-                href="/#sign-in"
-                onClick={handleLinkClick}
-                className="inline-block text-xl font-mono uppercase text-black transition-colors ease-out duration-150 hover:text-gray-700 py-2 font-semibold"
-              >
-                Sign In
-              </Link>
-            </div>
           </nav>
         </Dialog.Content>
       </Dialog.Portal>

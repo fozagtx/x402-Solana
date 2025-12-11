@@ -15,6 +15,8 @@ interface Message {
 export function LiveDemo() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
+  const cardShell =
+    "border border-black/20 bg-white/50 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.12)]";
 
   const handleAction = async (action: string) => {
     setIsProcessing(true);
@@ -65,7 +67,7 @@ export function LiveDemo() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <MessageSquare className="w-5 h-5" />
@@ -111,7 +113,7 @@ export function LiveDemo() {
           </CardContent>
         </Card>
 
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
             <CardDescription>Test the agent with these actions</CardDescription>
@@ -170,4 +172,3 @@ export function LiveDemo() {
     </section>
   );
 }
-

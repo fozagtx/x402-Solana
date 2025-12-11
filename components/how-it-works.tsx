@@ -31,6 +31,9 @@ const steps = [
 ];
 
 export function HowItWorks() {
+  const cardShell =
+    "border border-black/20 bg-white/50 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.12)]";
+
   return (
     <section id="how-it-works" className="py-24 container">
       <div className="text-center mb-16">
@@ -46,7 +49,7 @@ export function HowItWorks() {
         {steps.map((step, index) => {
           const Icon = step.icon;
           return (
-            <Card key={step.number} className="border-border bg-background/50 backdrop-blur-sm relative">
+            <Card key={step.number} className={`${cardShell} relative`}>
               <CardHeader>
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -70,7 +73,7 @@ export function HowItWorks() {
       </div>
 
       <div className="text-center">
-        <Card className="border-border bg-background/50 backdrop-blur-sm inline-block">
+        <Card className={`${cardShell} inline-block`}>
           <CardContent className="p-6">
             <p className="font-mono text-foreground/80">
               Issue item • Return digital asset • Unlock service • Provide receipt
@@ -82,4 +85,3 @@ export function HowItWorks() {
     </section>
   );
 }
-

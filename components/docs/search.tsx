@@ -50,7 +50,7 @@ const docSections: DocSection[] = [
   },
   {
     id: "getting-started",
-    title: "Getting Started — Local Development",
+    title: "Getting Started - Local Development",
     href: "/docs#getting-started",
     keywords: ["getting started", "local", "development", "setup"],
     description: "Local development setup guide",
@@ -185,4 +185,3 @@ export function DocsSearch() {
     </>
   );
 }
-

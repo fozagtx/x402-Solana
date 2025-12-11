@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Header } from "@/components/header";
 import { WelcomeSection } from "./welcome-section";
 import { FeatureCards } from "./feature-cards";
@@ -8,11 +7,10 @@ import { ActionButtons } from "./action-buttons";
 import { ChatInput } from "./chat-input";
 import { Leva } from "leva";
 import { ChatTranscript } from "./chat-transcript";
-import { useAdkChat } from "@/hooks/useAdkChat";
+import { useAiChat } from "@/hooks/useAiChat";
 import { AlertCircle } from "lucide-react";
 
 export function ChatDashboard() {
-  const [hovering] = useState(false);
   const {
     messages,
     sendMessage,
@@ -23,7 +21,7 @@ export function ChatDashboard() {
     updatePaymentStatus,
     handlePaymentError,
     handlePaymentSuccess,
-  } = useAdkChat();
+  } = useAiChat();
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -68,4 +66,3 @@ export function ChatDashboard() {
     </div>
   );
 }
-

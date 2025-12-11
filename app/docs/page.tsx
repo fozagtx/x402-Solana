@@ -1,6 +1,4 @@
 "use client";
-
-import { DocsSearch } from "@/components/docs/search";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { 
@@ -97,6 +95,9 @@ const docSections = [
     description: "Deployment instructions",
   },
 ];
+
+const codeBlockStyles =
+  "bg-gray-950 text-gray-100 border border-white/10 rounded-xl p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto shadow-[0_18px_60px_rgba(0,0,0,0.2)]";
 
 export default function DocsPage() {
   return (
@@ -246,14 +247,14 @@ export default function DocsPage() {
             <div className="space-y-4 sm:space-y-6">
               <div>
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">1. Clone the repo</h3>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black">
+                <pre className={codeBlockStyles}>
 {`git clone <REPO_URL>
 cd x402-ai-starter-kit`}
                 </pre>
               </div>
               <div>
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">2. Install dependencies</h3>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black">
+                <pre className={codeBlockStyles}>
 {`# in the root directory (Next.js frontend)
 npm install
 
@@ -293,7 +294,7 @@ cd mcp-server && npm install`}
             <div className="space-y-4 sm:space-y-6">
               <div>
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">Frontend Environment Variables</h3>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black">
+                <pre className={codeBlockStyles}>
 {`NEXT_PUBLIC_API_BASE_URL=https://api.yourdomain.com # MCP server address
 NEXT_PUBLIC_ADK_ENDPOINT=https://adk.yourdomain.com # ADK or agent endpoint
 NEXT_PUBLIC_SOLANA_NETWORK=mainnet-beta
@@ -302,7 +303,7 @@ NEXT_PUBLIC_DEFAULT_TOKEN_USDC=USDC_MAINNET_MINT_ADDRESS`}
               </div>
               <div>
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">MCP Server Environment Variables</h3>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black">
+                <pre className={codeBlockStyles}>
 {`PORT=4000
 SOLANA_CLUSTER=mainnet-beta
 SOLANA_RPC=https://api.mainnet-beta.solana.com
@@ -313,7 +314,7 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">Agent configuration</h3>
                 <ul className="space-y-2 text-sm sm:text-base text-gray-700 list-disc list-inside ml-4">
                   <li><strong className="text-black">AGENT_ID / AGENT_TOKEN</strong> (ADK authentication)</li>
-                  <li><strong className="text-black">MERCHANT_PUBLIC_KEY</strong> — the Solana address merchants use to receive payments</li>
+                  <li><strong className="text-black">MERCHANT_PUBLIC_KEY</strong>: the Solana address merchants use to receive payments</li>
                 </ul>
                 <p className="text-sm sm:text-base text-gray-700 mt-4 leading-relaxed">
                   <strong className="text-black">Keep secrets (private keys, service tokens) out of git and use environment variables or secret managers.</strong>
@@ -405,7 +406,7 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
               </ul>
               <div className="mt-6">
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">Typical fields in an x402 payload:</h3>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black">
+                <pre className={codeBlockStyles}>
 {`{
   "amount": "5000",
   "currency": "USDC",
@@ -436,9 +437,9 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
                 The MCP server exposes endpoints that agents and the frontend use for payment orchestration. Core endpoints include:
               </p>
               <ul className="space-y-2 text-sm sm:text-base text-gray-700 list-disc list-inside ml-4">
-                <li><strong className="text-black">POST /prepare-payment</strong> — merchant requests the server prepare a transaction payload</li>
-                <li><strong className="text-black">POST /validate-payment</strong> — merchant asks server to validate payment using transaction signature</li>
-                <li><strong className="text-black">GET /health</strong> — service health check</li>
+                <li><strong className="text-black">POST /prepare-payment</strong>: merchant requests the server prepare a transaction payload</li>
+                <li><strong className="text-black">POST /validate-payment</strong>: merchant asks server to validate payment using transaction signature</li>
+                <li><strong className="text-black">GET /health</strong>: service health check</li>
               </ul>
               <div>
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">MCP responsibilities</h3>
@@ -472,7 +473,7 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">POST /prepare-payment</h3>
                 <p className="text-sm sm:text-base text-gray-700 mb-2">Create a prepared transaction for token transfer</p>
                 <p className="text-xs sm:text-sm text-gray-600 mb-2">Request:</p>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black mb-2">
+                <pre className={`${codeBlockStyles} mb-2`}>
 {`{
   "from": "payerPubkey",
   "to": "merchantPubkey",
@@ -481,7 +482,7 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
 }`}
                 </pre>
                 <p className="text-xs sm:text-sm text-gray-600 mb-2">Response:</p>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black">
+                <pre className={codeBlockStyles}>
 {`{ "preparedTxBase64": "...", "recentBlockhash": "..." }`}
                 </pre>
               </div>
@@ -489,16 +490,16 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
                 <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">POST /validate-payment</h3>
                 <p className="text-sm sm:text-base text-gray-700 mb-2">Validate a tx signature and token transfer</p>
                 <p className="text-xs sm:text-sm text-gray-600 mb-2">Request:</p>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black mb-2">
+                <pre className={`${codeBlockStyles} mb-2`}>
 {`{ "signature": "...", "expectedAmount": 5, "mint": "USDC_MINT" }`}
                 </pre>
                 <p className="text-xs sm:text-sm text-gray-600 mb-2">Response:</p>
-                <pre className="bg-gray-100 border-2 border-gray-200 rounded-lg p-3 sm:p-4 text-xs sm:text-sm overflow-x-auto text-black">
+                <pre className={codeBlockStyles}>
 {`{ "status": "confirmed", "confirmedSlot": 12345 }`}
                 </pre>
               </div>
               <p className="text-xs sm:text-sm text-gray-600 italic">
-                This is a compact reference — adapt to your actual code routes.
+                This is a compact reference; adapt to your actual code routes.
               </p>
             </div>
           </div>
@@ -510,7 +511,7 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
             <h2 className="font-serif text-2xl sm:text-3xl mb-4 sm:mb-6 text-black">10. Example Flows / Walkthroughs</h2>
             <div className="space-y-6 sm:space-y-8">
               <div>
-                <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">Example 1 — Basic buyer flow (UI + Phantom wallet)</h3>
+                <h3 className="font-serif text-lg sm:text-xl mb-3 text-black">Example 1 - Basic buyer flow (UI + Phantom wallet)</h3>
                 <ol className="space-y-2 text-sm sm:text-base text-gray-700 list-decimal list-inside ml-4">
                   <li>User types in the UI: &ldquo;I want to buy banana&rdquo;.</li>
                   <li>Client agent constructs a purchase intent and asks merchant agent for price.</li>
@@ -549,9 +550,9 @@ USDC_MINT_ADDRESS=<USDC_MAINNET_MINT>`}
             <h2 className="font-serif text-2xl sm:text-3xl mb-4 sm:mb-6 text-black">12. Security Considerations</h2>
             <div className="space-y-4 sm:space-y-6">
               <ul className="space-y-2 text-sm sm:text-base text-gray-700 list-disc list-inside ml-4">
-                <li>Never use server signing in production — always require user wallet signatures</li>
+                <li>Never use server signing in production; always require user wallet signatures</li>
                 <li>Validate all on-chain transactions before completing services</li>
-                <li>Use proper key management — never commit private keys to git</li>
+                <li>Use proper key management; never commit private keys to git</li>
                 <li>Implement rate limiting on API endpoints</li>
                 <li>Use HTTPS in production</li>
                 <li>Validate payment amounts and recipients on-chain</li>

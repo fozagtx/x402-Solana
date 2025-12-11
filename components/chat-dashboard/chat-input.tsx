@@ -25,14 +25,6 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Sample texts to type
-  const sampleTexts = [
-    "What would like to know",
-    "Ask me anything about x402",
-    "Try: Buy a banana",
-    "How can I help you?",
-  ];
-
   // Auto-typing animation effect
   useEffect(() => {
     if (!isFocused || message) {
@@ -42,12 +34,16 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
     }
 
     setIsTyping(true);
+    const sampleTexts = [
+      "What would like to know",
+      "Ask me anything about x402",
+      "Try: Buy a banana",
+      "How can I help you?",
+    ];
     let currentTextIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
     let pauseCount = 0;
-    let typeInterval: NodeJS.Timeout;
-
     const animate = () => {
       const currentText = sampleTexts[currentTextIndex];
 
@@ -73,14 +69,14 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
       }
     };
 
-    typeInterval = setInterval(animate, 80);
+    const typeInterval = setInterval(animate, 80);
 
     return () => {
       if (typeInterval) clearInterval(typeInterval);
       setIsTyping(false);
       setTypingText("");
     };
-  }, [isFocused, message, sampleTexts]);
+  }, [isFocused, message]);
 
   // Blinking cursor effect
   useEffect(() => {
@@ -207,4 +203,3 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
     </div>
   );
 }
-

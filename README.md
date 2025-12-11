@@ -8,7 +8,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![Solana](https://img.shields.io/badge/Solana-Web3-purple?style=for-the-badge&logo=solana)
 
-**Experience real on-chain payments, autonomous agents, and decentralized commerce — all powered by Solana, x402, MCP tools, and the Google ADK.**
+**Experience real on-chain payments, autonomous agents, and decentralized commerce - all powered by Solana, x402, MCP tools, and the Vercel AI SDK (OpenAI).**
 
 [Features](#-features) • [Quick Start](#-quick-start) • [Documentation](#-documentation) • [Architecture](#-architecture) • [Contributing](#-contributing)
 
@@ -39,14 +39,14 @@ https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
 
 ## Overview
 
-**x402Solana** is a complete platform for AI-powered payments on Solana using the x402 payment protocol, Google Agent Development Kit (ADK), and autonomous agents. The platform enables AI agents to request, verify, and execute cryptocurrency payments in real-time — facilitating true agent-to-agent commerce.
+**x402Solana** is a complete platform for AI-powered payments on Solana using the x402 payment protocol, the Vercel AI SDK (OpenAI), and autonomous agents. The platform enables AI agents to request, verify, and execute cryptocurrency payments in real-time - facilitating true agent-to-agent commerce.
 
 ### Key Capabilities
 
 - **Autonomous Agents**: Build AI agents that can transact, charge, and verify payments automatically
 - **x402 Protocol**: Machine-verifiable payment requests designed for AI ↔ AI commerce
 - **Solana Integration**: Fast, cheap transactions with USDC SPL token support
-- **Google ADK**: Full integration with Google's Agent Development Kit
+- **AI Agent Integration**: Vercel AI SDK + OpenAI backing the chat agent
 - **Telegram Bot**: Deploy agents directly into Telegram conversations
 - **Developer SDK**: JavaScript/TypeScript SDK for easy integration
 
@@ -59,7 +59,7 @@ https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
 - **Landing Page**: Complete marketing site with hero, features, live demo, and documentation
 - **x402 Payment Protocol**: Invoice creation, payment requests, and verification
 - **Solana Integration**: Transaction creation, signing, and on-chain verification
-- **ADK Integration**: Client and merchant agent templates with chat UI
+- **AI Agent Integration**: Client and merchant agent templates with chat UI (OpenAI via Vercel AI SDK)
 - **Authentication**: NextAuth.js with email/password and OAuth (Google/GitHub)
 - **User Dashboards**: Profile, API keys, and wallet management
 - **Merchant Dashboard**: Settings, invoices, and transaction management
@@ -76,6 +76,30 @@ https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
 - **Modern UI**: Glassmorphism design with Three.js particle effects
 - **Responsive**: Mobile-first design with adaptive layouts
 - **Dark Theme**: Beautiful blue-themed dark mode
+
+---
+
+## Devnet Helpers (Wallet + Airdrop)
+
+Quick scripts to get a funded devnet wallet for testing:
+
+```bash
+# Generate a new Solana keypair (prints public + secret; keep secret safe)
+pnpm keygen:solana
+
+# Airdrop SOL on devnet (customize address/amount/rpc)
+pnpm airdrop:solana --address <YOUR_DEVNET_PUBLIC_KEY> --amount 1 --rpc https://api.devnet.solana.com
+```
+
+Environment hints for devnet testing:
+- `NEXT_PUBLIC_SOLANA_NETWORK=devnet`
+- `NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com`
+- `NEXT_PUBLIC_MERCHANT_ADDRESS=<your devnet wallet>`
+- `NEXT_PUBLIC_PAYMENT_TOKEN=SOL` (or set a devnet USDC mint via `NEXT_PUBLIC_PAYMENT_TOKEN`/`NEXT_PUBLIC_USDC_MINT`)
+- `NEXT_PUBLIC_PAYMENT_AMOUNT=0.1`
+- `OPENAI_API_KEY=<your key>` for the chat agent
+
+After funding, connect your wallet in the chat page, ask to “buy …”, and use the PayWithWallet prompt to run an on-chain transaction.
 
 ---
 
@@ -145,7 +169,7 @@ graph TB
     end
 
     subgraph "Agent Layer"
-        F[Client Agent] --> G[ADK Client]
+        F[Client Agent] --> G[AI SDK Client]
         H[Merchant Agent] --> G
         G --> I[x402 Tools]
         G --> J[Payment Tools]
@@ -183,7 +207,7 @@ graph TB
     end
 
     subgraph "External Services"
-        AF[Google ADK] --> G
+        AF[AI SDK + OpenAI] --> G
         AG[Telegram Bot] --> O
         AH[Webhooks] --> T
     end
@@ -542,33 +566,22 @@ const unwatch = await sdk.watchInvoice(invoice.id, (status) => {
 unwatch();
 ```
 
-### ADK Agents
-
-#### Client Agent
+### AI SDK (OpenAI)
 
 ```typescript
-import { ADKClient } from '@fozagtx/x402-sdk';
+import { createClient } from 'ai';
+import { openai } from '@ai-sdk/openai';
 
-const client = new ADKClient();
-const buyerAgent = client.createClientAgent('buyer-agent-1', 'user-123');
+const client = createClient({
+  apiKey: process.env.OPENAI_API_KEY!,
+});
 
-const result = await buyerAgent.processPurchase(
-  'merchant-123',
-  '1.0',
-  'USDC'
-);
-```
+const res = await client.chat({
+  model: openai('gpt-4o-mini'),
+  messages: [{ role: 'user', content: 'Create an invoice for 5 USDC' }],
+});
 
-#### Merchant Agent
-
-```typescript
-const merchantAgent = client.createMerchantAgent(
-  'merchant-agent-1',
-  'merchant-123',
-  'YourSolanaAddressHere'
-);
-
-const result = await merchantAgent.processPaymentRequest('1.0', 'USDC');
+console.log(res.text);
 ```
 
 ---
@@ -601,32 +614,20 @@ const signature = await sdk.submitTransaction(signedTx);
 const confirmation = await sdk.confirmPayment(invoice.id, signature);
 ```
 
-### Example 2: Using ADK Agents
+### Example 2: OpenAI Agent Chat
 
 ```typescript
-// Client agent requests payment
-const clientAgent = new ClientAgent({
-  agentId: 'buyer-1',
-  userId: 'user-123',
+const client = createClient({ apiKey: process.env.OPENAI_API_KEY! });
+
+const res = await client.chat({
+  model: openai('gpt-4o-mini'),
+  messages: [
+    { role: 'system', content: 'You are a Solana payments agent.' },
+    { role: 'user', content: 'Issue an invoice for 1 USDC' },
+  ],
 });
 
-const paymentRequest = await clientAgent.requestPayment({
-  merchantId: 'merchant-123',
-  amount: '1.0',
-  token: 'USDC',
-});
-
-// Merchant agent processes payment
-const merchantAgent = new MerchantAgent({
-  agentId: 'merchant-1',
-  merchantId: 'merchant-123',
-  receivingAddress: 'SolanaAddress...',
-});
-
-const invoice = await merchantAgent.createInvoice({
-  amount: '1.0',
-  token: 'USDC',
-});
+console.log(res.text);
 ```
 
 See the [`examples/`](./examples/) directory for more complete examples.
@@ -657,7 +658,7 @@ x402solana/
 │   ├── flows/             # Payment flow components
 │   └── ui/                # UI components (shadcn)
 ├── lib/                   # Library code
-│   ├── adk/               # ADK integration
+│   ├── scripts/           # keygen + airdrop scripts for devnet
 │   ├── solana/            # Solana integration
 │   ├── x402/              # x402 protocol
 │   ├── auth/              # Authentication config
@@ -776,7 +777,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - [Solana](https://solana.com/) - The blockchain platform
-- [Google ADK](https://github.com/google/agentic-ai-devkit) - Agent Development Kit
+- [Vercel AI SDK](https://sdk.vercel.ai/docs) - AI SDK (OpenAI provider)
 - [x402 Protocol](https://x402.dev/) - Payment Required Protocol
 - [Next.js](https://nextjs.org/) - The React framework
 - [Prisma](https://www.prisma.io/) - The database toolkit

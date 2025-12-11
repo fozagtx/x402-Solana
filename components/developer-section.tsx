@@ -5,6 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Button } from "./ui/button";
 
 export function DeveloperSection() {
+  const cardShell =
+    "border border-black/20 bg-white/50 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.12)]";
+
   return (
     <section id="developers" className="py-24 container">
       <div className="text-center mb-16">
@@ -17,7 +20,7 @@ export function DeveloperSection() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
               <Code className="w-6 h-6 text-primary" />
@@ -29,7 +32,7 @@ export function DeveloperSection() {
           </CardHeader>
         </Card>
 
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
               <FileCode className="w-6 h-6 text-primary" />
@@ -41,7 +44,7 @@ export function DeveloperSection() {
           </CardHeader>
         </Card>
 
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
               <Wrench className="w-6 h-6 text-primary" />
@@ -55,7 +58,7 @@ export function DeveloperSection() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BookOpen className="w-5 h-5" />
@@ -84,7 +87,7 @@ export function DeveloperSection() {
           </CardContent>
         </Card>
 
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Terminal className="w-5 h-5" />
@@ -120,4 +123,3 @@ export function DeveloperSection() {
     </section>
   );
 }
-

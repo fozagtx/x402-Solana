@@ -7,7 +7,7 @@ team/estimate guidance so you can execute it.
 I kept this actionable: every item has what it is, why it’s needed, and (when useful)
 implementation notes or endpoints to build. Use this as a blueprint you can hand to
 engineers, contractors, or use to plan sprints.
-1 — Features (detailed)
+1 - Features (detailed)
 A. Public product / landing site
 Hero/marketing
 Headline, subheadline, CTAs (Try Demo, Docs, Telegram)
@@ -23,7 +23,7 @@ Wallet connect/Phantom button to check balance/USDC
 Test x402 payment
 A sandbox button to run a test payment (creates ephemeral invoice and shows
 tx link)
-Generate random merchant / request id — useful for demo/test flows
+Generate random merchant / request id - useful for demo/test flows
 Footer / links: docs, GitHub, contact, privacy, legal
 B. Authentication & Accounts
 User accounts (email/password, OAuth Google/GitHub)
@@ -48,7 +48,7 @@ Create/Edit agent prompt/skills from UI
 Upload code / configuration (agent manifests)
 Sandbox test runner & logs
 Session recording for debugging / audit
-D. Payments — x402 + Solana
+D. Payments - x402 + Solana
 x402 handler & spec implementation
 Create and sign x402 invoices, request payment, verify payment receipts
 Solana integration
@@ -109,10 +109,10 @@ J. Billing & Monetization (optional)
 Platform fees: percentage per transaction, subscription tiers for features
 Invoice history & billing dashboard
 Usage-based API keys and quotas
-2 — Build plan / roadmap (phased with deliverables)
+2 - Build plan / roadmap (phased with deliverables)
 I’ll split this into Phase 0 (prep) + Phase 1..5 with sprint-sized chunks. Each phase lists
 outputs you can check off.
-Phase 0 — Preparation (1 week)
+Phase 0 - Preparation (1 week)
 Goal: lock tech stack, repo skeletons, and run a small spike to prove ADK ↔ x402 ↔
 Solana flows.
 Deliverables
@@ -120,7 +120,7 @@ Repo skeletons: web-frontend , backend-api , adk-agents , telegram-bot , docs
 Chosen tech:
 Frontend: React + Tailwind (or Next.js), Web3 wallet integration (Phantom
 adapter)
-Backend: Node.js (Express/Fastify) or Python (FastAPI) — I'll recommend Node.js
+Backend: Node.js (Express/Fastify) or Python (FastAPI) - I'll recommend Node.js
 for SDK parity
 DB: Postgres for invoices, Redis for sessions/queues
 Solana SDK: @solana/web3.js , spl-token
@@ -131,7 +131,7 @@ https://chatgpt.com/c/691bce8c-3548-8322-b764-33cece4da6d2 4/17
 Minimal architecture diagram (one-page)
 Spike test: create a devnet invoice from backend and sign/send a simple devnet
 transaction with web3.js
-Phase 1 — Core backend + Solana x402 (2–3 sprints)
+Phase 1 - Core backend + Solana x402 (2–3 sprints)
 Goal: implement x402 invoice handling and Solana payment verification.
 Tasks
 1. Invoice model & DB
@@ -147,7 +147,7 @@ webhook/websocket watchers to confirm tx signatures on devnet/mainnet
 Deliverables
 Working API POST/GET invoice, status change when tx confirmed
 Integration tests for invoice lifecycle
-Phase 2 — ADK agent integration + Chat UI (2–3 sprints)
+Phase 2 - ADK agent integration + Chat UI (2–3 sprints)
 Goal: wire the ADK so agents can make x402 requests and display flows in the chat UI.
 Tasks
 1. Agent connectors
@@ -166,7 +166,7 @@ Integration to Phantom for signing when user approves
 Deliverables
 Demo: chat flow that requests payment and shows tx link when completed
 ADK agent manifests and docs for how to extend
-Phase 3 — Authentication, Accounts, Admin panel & SDKs (2 sprints)
+Phase 3 - Authentication, Accounts, Admin panel & SDKs (2 sprints)
 Goal: user accounts, merchant settings, keys, SDKs and admin features.
 Tasks
 1. Auth: OAuth + email/password, JWT sessions
@@ -177,7 +177,7 @@ Tasks
 Deliverables
 Merchants can configure receiving addresses and webhooks
 JS SDK v0.1 published (npm or repo)
-Phase 4 — Telegram Bot + Telegram integration (1–2 sprints)
+Phase 4 - Telegram Bot + Telegram integration (1–2 sprints)
 Goal: Telegram bot that exposes basic shopping/payment flows.
 Tasks
 1. Bot flow
@@ -190,7 +190,7 @@ Deliverables
 https://chatgpt.com/c/691bce8c-3548-8322-b764-33cece4da6d2 6/17
 Working Telegram bot with full demo purchase flow
 Bot code sample in repo
-Phase 5 — Docs, QA, Security Audit, Release (2–3 sprints)
+Phase 5 - Docs, QA, Security Audit, Release (2–3 sprints)
 Goal: polish, test, secure, and publish.
 Tasks
 1. Docs: quickstarts, API reference, ADK guides, Telegram guide, code examples
@@ -223,13 +223,13 @@ sending webhooks)
 7. CI/CD + hosting: Vercel/Netlify for frontend, AWS/GCP/Render for backend,
 Kubernetes if scale needed
 API surface (essential endpoints)
-POST /api/v1/invoices — create invoice {merchant_id, amount, token,
+POST /api/v1/invoices - create invoice {merchant_id, amount, token,
 metadata} → returns invoice_id, request_payload
-GET /api/v1/invoices/:id — invoice status
-POST /api/v1/invoices/:id/notify — (internal) webhook simulation for tests
-POST /api/v1/webhooks/register — merchant webhook registration
-GET /api/v1/agents/:id/sessions — ADK sessions / traces (admin)
-POST /api/v1/auth/* — login, oauth callbacks
+GET /api/v1/invoices/:id - invoice status
+POST /api/v1/invoices/:id/notify - (internal) webhook simulation for tests
+POST /api/v1/webhooks/register - merchant webhook registration
+GET /api/v1/agents/:id/sessions - ADK sessions / traces (admin)
+POST /api/v1/auth/* - login, oauth callbacks
 Data models (essentials)
 Invoice: id, merchant_id, amount, token, status (pending/paid/expired/cancelled),
 tx_signature, expires_at, metadata
@@ -241,7 +241,7 @@ Use HTTPS everywhere, secure cookies, JWT best practices
 Validate invoice parameters server-side (amount limits, allowed token)
 Nonces + invoice expiration to prevent replay
 Limit API key scopes and rate-limit by key
-Don’t store user private keys — always use client-side signing unless merchant
+Don’t store user private keys - always use client-side signing unless merchant
 explicitly uses a custodial signer
 Ensure webhooks have HMAC verification
 11/18/25, 7:43 AM GitHub repos Solana x402
@@ -300,11 +300,11 @@ For your x402 + Solana + AI Agent Development Kit platform
 11/18/25, 7:43 AM GitHub repos Solana x402
 https://chatgpt.com/c/691bce8c-3548-8322-b764-33cece4da6d2 10/17
 🌌 Hero Section
-Welcome to x402 on Solana — AI-Powered Payments for the Autonomous
+Welcome to x402 on Solana - AI-Powered Payments for the Autonomous
 Web
 Experience real on-chain payments, autonomous agents, and decentralized commerce
-— all powered by Solana, x402, MCP tools, and the Google ADK.
-Build, test, and deploy AI agents that can transact, charge, and verify payments —
+- all powered by Solana, x402, MCP tools, and the Google ADK.
+Build, test, and deploy AI agents that can transact, charge, and verify payments -
 automatically.
 → Start Building
 → Explore Documentation
@@ -312,7 +312,7 @@ automatically.
 🛰 Sub-headline / Value Proposition
 The future of commerce is agent-to-agent.
 x402 unlocks autonomous payment flows where agents can request, verify, and execute
-cryptocurrency payments in real time — no manual steps, no API sprawl, no centralized
+cryptocurrency payments in real time - no manual steps, no API sprawl, no centralized
 control.
 Powered by Solana devnet/mainnet, SPL tokens, USDC, Google ADK, and x402 Payment
 Required Protocol.
@@ -418,7 +418,7 @@ Spec-compliant payment requests for LLM-native commerce.
 11/18/25, 7:43 AM GitHub repos Solana x402
 https://chatgpt.com/c/691bce8c-3548-8322-b764-33cece4da6d2 14/17
 📱 Telegram Bot Integration
-Your Agents — Now on Telegram
+Your Agents - Now on Telegram
 Deploy your AI agents directly into conversations.
 Place orders directly from Telegram
 Approve/pay invoices inside Telegram
@@ -480,9 +480,9 @@ x402 + Solana + AI Agents Platform
 Autonomous Payments for the Next Internet.
 Links:
 Docs • GitHub • Telegram • Twitter • Privacy Policy • Terms
-— Developer, Solana Ecosystem
+- Developer, Solana Ecosystem
 “The ADK integration is insanely good. Tracing payment flows visually is a
 superpower.”
-— AI Engineer
+- AI Engineer
 11/18/25, 7:43 AM GitHub repos Solana x402
 https://chatgpt.com/c/691bce8c-3548-8322-b764-33cece4da6d2 17/17

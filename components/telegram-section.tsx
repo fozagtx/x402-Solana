@@ -5,11 +5,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Button } from "./ui/button";
 
 export function TelegramSection() {
+  const cardShell =
+    "border border-black/20 bg-white/50 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.12)]";
+
   return (
     <section id="telegram" className="py-24 container">
       <div className="text-center mb-16">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-sentient mb-4">
-          Your Agents — <i className="font-light">Now on Telegram</i>
+          Your Agents - <i className="font-light">Now on Telegram</i>
         </h2>
         <p className="font-mono text-xs sm:text-sm text-blue-300 text-balance max-w-2xl mx-auto px-4 sm:px-0">
           Deploy your AI agents directly into conversations
@@ -17,7 +20,7 @@ export function TelegramSection() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
               <Bot className="w-6 h-6 text-primary" />
@@ -71,7 +74,7 @@ export function TelegramSection() {
           </CardContent>
         </Card>
 
-        <Card className="border-border bg-background/50 backdrop-blur-sm">
+        <Card className={cardShell}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <MessageSquare className="w-5 h-5" />
@@ -110,4 +113,3 @@ export function TelegramSection() {
     </section>
   );
 }
-

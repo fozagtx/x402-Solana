@@ -41,14 +41,6 @@ export const Header = () => {
                 </Link>
               );
             })}
-
-            {/* Sign In */}
-            <Link
-              className="uppercase transition-colors ease-out duration-150 font-mono text-black hover:text-gray-700 text-sm ml-2 pl-4 border-l border-gray-400 font-semibold"
-              href="/#sign-in"
-            >
-              Sign In
-            </Link>
           </div>
 
           {/* Mobile Menu */}

@@ -5,6 +5,9 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 export function FeaturePanels() {
+  const cardStyles =
+    "relative overflow-hidden border border-black/20 bg-white/50 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.12)] hover:shadow-[0_30px_90px_rgba(0,0,0,0.18)] transition-all duration-300";
+
   return (
     <section id="features" className="py-12 sm:py-16 lg:py-24 container px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12 sm:mb-16">
@@ -12,12 +15,12 @@ export function FeaturePanels() {
           The future of commerce is <i className="font-light">agent-to-agent</i>
         </h2>
         <p className="text-sm sm:text-base lg:text-lg text-black/70 text-balance max-w-3xl mx-auto px-4 sm:px-0 leading-relaxed">
-          x402 unlocks autonomous payment flows where agents can request, verify, and execute cryptocurrency payments in real time — no manual steps, no API sprawl, no centralized control. Powered by Solana devnet/mainnet, SPL tokens, USDC, Google ADK, and x402 Payment Required Protocol.
+          x402 unlocks autonomous payment flows where agents can request, verify, and execute cryptocurrency payments in real time - no manual steps, no API sprawl, no centralized control. Powered by Solana devnet/mainnet, SPL tokens, USDC, Google ADK, and x402 Payment Required Protocol.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-        <Card className="border-2 border-gray-200 bg-white/90 backdrop-blur-sm hover:border-gray-300 transition-all duration-300 shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-gray-300/60 hover:-translate-y-1">
+        <Card className={cardStyles}>
           <CardHeader className="pb-4">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-3 sm:mb-4">
               <Coins className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
@@ -35,18 +38,18 @@ export function FeaturePanels() {
               <li>• On-chain transaction verification and explorer links</li>
               <li>• Instant settlement with USDC SPL tokens</li>
             </ul>
-            <div className="flex flex-col sm:flex-row gap-2 pt-3 sm:pt-4">
-              <Button variant="default" size="sm" className="flex-1 text-xs sm:text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 sm:pt-4">
+              <Button variant="default" size="sm" className="w-full justify-center text-xs sm:text-sm">
                 Check Solana Account
               </Button>
-              <Button variant="default" size="sm" className="flex-1 text-xs sm:text-sm">
+              <Button variant="default" size="sm" className="w-full justify-center text-xs sm:text-sm">
                 Test x402 Payment
               </Button>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-gray-200 bg-white/90 backdrop-blur-sm hover:border-gray-300 transition-all duration-300 shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-gray-300/60 hover:-translate-y-1">
+        <Card className={cardStyles}>
           <CardHeader className="pb-4">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-3 sm:mb-4">
               <Brain className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
@@ -64,18 +67,18 @@ export function FeaturePanels() {
               <li>• MCP server, payment testing tools, debugging utilities</li>
               <li>• Local & cloud-based agent execution</li>
             </ul>
-            <div className="flex flex-col sm:flex-row gap-2 pt-3 sm:pt-4">
-              <Button variant="default" size="sm" className="flex-1 text-xs sm:text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 sm:pt-4">
+              <Button variant="default" size="sm" className="w-full justify-center text-xs sm:text-sm">
                 Try Live Chat Agent
               </Button>
-              <Button variant="default" size="sm" className="flex-1 text-xs sm:text-sm">
+              <Button variant="default" size="sm" className="w-full justify-center text-xs sm:text-sm">
                 Explore ADK Examples
               </Button>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-gray-200 bg-white/90 backdrop-blur-sm hover:border-gray-300 transition-all duration-300 shadow-lg shadow-gray-200/50 hover:shadow-xl hover:shadow-gray-300/60 hover:-translate-y-1">
+        <Card className={cardStyles}>
           <CardHeader className="pb-4">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-3 sm:mb-4">
               <Link2 className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
@@ -93,11 +96,11 @@ export function FeaturePanels() {
               <li>• Cryptographic signatures for trustless commerce</li>
               <li>• Built-in replay protection & expiry logic</li>
             </ul>
-            <div className="flex flex-col sm:flex-row gap-2 pt-3 sm:pt-4">
-              <Button variant="default" size="sm" className="flex-1 text-xs sm:text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 sm:pt-4">
+              <Button variant="default" size="sm" className="w-full justify-center text-xs sm:text-sm">
                 Learn About x402
               </Button>
-              <Button variant="default" size="sm" className="flex-1 text-xs sm:text-sm">
+              <Button variant="default" size="sm" className="w-full justify-center text-xs sm:text-sm">
                 Create Test Invoice
               </Button>
             </div>
@@ -107,4 +110,3 @@ export function FeaturePanels() {
     </section>
   );
 }
-
