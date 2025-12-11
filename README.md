@@ -19,67 +19,67 @@
 https://github.com/user-attachments/assets/8d989fc8-9237-40e4-a378-98b960a7b60a
 
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Quick Start](#-quick-start)
-- [Commands & Usage](#-commands--usage)
-- [API Reference](#-api-reference)
-- [SDK Usage](#-sdk-usage)
-- [Examples](#-examples)
-- [Development](#-development)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Quick Start](#quick-start)
+- [Commands & Usage](#commands--usage)
+- [API Reference](#api-reference)
+- [SDK Usage](#sdk-usage)
+- [Examples](#examples)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 🎯 Overview
+## Overview
 
 **x402Solana** is a complete platform for AI-powered payments on Solana using the x402 payment protocol, Google Agent Development Kit (ADK), and autonomous agents. The platform enables AI agents to request, verify, and execute cryptocurrency payments in real-time — facilitating true agent-to-agent commerce.
 
 ### Key Capabilities
 
-- 🤖 **Autonomous Agents**: Build AI agents that can transact, charge, and verify payments automatically
-- 💰 **x402 Protocol**: Machine-verifiable payment requests designed for AI ↔ AI commerce
-- ⚡ **Solana Integration**: Fast, cheap transactions with USDC SPL token support
-- 🔗 **Google ADK**: Full integration with Google's Agent Development Kit
-- 📱 **Telegram Bot**: Deploy agents directly into Telegram conversations
-- 🛠️ **Developer SDK**: JavaScript/TypeScript SDK for easy integration
+- **Autonomous Agents**: Build AI agents that can transact, charge, and verify payments automatically
+- **x402 Protocol**: Machine-verifiable payment requests designed for AI ↔ AI commerce
+- **Solana Integration**: Fast, cheap transactions with USDC SPL token support
+- **Google ADK**: Full integration with Google's Agent Development Kit
+- **Telegram Bot**: Deploy agents directly into Telegram conversations
+- **Developer SDK**: JavaScript/TypeScript SDK for easy integration
 
 ---
 
-## ✨ Features
+## Features
 
 ### Core Features
 
-- ✅ **Landing Page**: Complete marketing site with hero, features, live demo, and documentation
-- ✅ **x402 Payment Protocol**: Invoice creation, payment requests, and verification
-- ✅ **Solana Integration**: Transaction creation, signing, and on-chain verification
-- ✅ **ADK Integration**: Client and merchant agent templates with chat UI
-- ✅ **Authentication**: NextAuth.js with email/password and OAuth (Google/GitHub)
-- ✅ **User Dashboards**: Profile, API keys, and wallet management
-- ✅ **Merchant Dashboard**: Settings, invoices, and transaction management
-- ✅ **Telegram Bot**: Webhook handler for Telegram integration
-- ✅ **SDK**: JavaScript/TypeScript SDK for easy integration
-- ✅ **Documentation**: Complete docs with quickstart guides
-- ✅ **Observability**: Logging, metrics, and audit trails
+- **Landing Page**: Complete marketing site with hero, features, live demo, and documentation
+- **x402 Payment Protocol**: Invoice creation, payment requests, and verification
+- **Solana Integration**: Transaction creation, signing, and on-chain verification
+- **ADK Integration**: Client and merchant agent templates with chat UI
+- **Authentication**: NextAuth.js with email/password and OAuth (Google/GitHub)
+- **User Dashboards**: Profile, API keys, and wallet management
+- **Merchant Dashboard**: Settings, invoices, and transaction management
+- **Telegram Bot**: Webhook handler for Telegram integration
+- **SDK**: JavaScript/TypeScript SDK for easy integration
+- **Documentation**: Complete docs with quickstart guides
+- **Observability**: Logging, metrics, and audit trails
 
 ### Advanced Features
 
-- 🔐 **Security**: Noncustodial wallet signing, anti-replay protection, invoice expiry
-- 📊 **Analytics**: Payment metrics, success rates, confirmation times
-- 🔔 **Webhooks**: Real-time notifications for payment events
-- 🎨 **Modern UI**: Glassmorphism design with Three.js particle effects
-- 📱 **Responsive**: Mobile-first design with adaptive layouts
-- 🌙 **Dark Theme**: Beautiful blue-themed dark mode
+- **Security**: Noncustodial wallet signing, anti-replay protection, invoice expiry
+- **Analytics**: Payment metrics, success rates, confirmation times
+- **Webhooks**: Real-time notifications for payment events
+- **Modern UI**: Glassmorphism design with Three.js particle effects
+- **Responsive**: Mobile-first design with adaptive layouts
+- **Dark Theme**: Beautiful blue-themed dark mode
 
 ---
 
-## 📦 npm SDK
+## npm SDK
 
 The TypeScript SDK that powers agent-to-agent payments is published as [`@fozagtx/x402-sdk`](https://www.npmjs.com/package/@fozagtx/x402-sdk). Use it to invoice agents, build Solana transactions, tap Phantom/Solflare wallets, and integrate x402 flows inside your own apps.
 
@@ -94,7 +94,7 @@ pnpm add @fozagtx/x402-sdk @solana/web3.js
 - Invoice helpers (`createInvoice`, `watchInvoice`) with retry/backoff + structured `X402Error` hooks
 - Example scripts: devnet Node flow + browser wallet demo in `sdk/examples/`
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -133,7 +133,7 @@ pnpm add @fozagtx/x402-sdk @solana/web3.js
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 graph TB
@@ -240,7 +240,7 @@ sequenceDiagram
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -314,7 +314,7 @@ The application will be available at `http://localhost:3000`
 
 ---
 
-## 📝 Commands & Usage
+## Commands & Usage
 
 ### Development Commands
 
@@ -385,7 +385,7 @@ pnpm analyze
 
 ---
 
-## 📚 API Reference
+## API Reference
 
 ### Invoice Management
 
@@ -506,7 +506,7 @@ Content-Type: application/json
 
 ---
 
-## 💻 SDK Usage
+## SDK Usage
 
 ### Installation
 
@@ -573,7 +573,7 @@ const result = await merchantAgent.processPaymentRequest('1.0', 'USDC');
 
 ---
 
-## 📖 Examples
+## Examples
 
 ### Example 1: Basic Payment Flow
 
@@ -633,7 +633,7 @@ See the [`examples/`](./examples/) directory for more complete examples.
 
 ---
 
-## 🔧 Development
+## Development
 
 ### Project Structure
 
@@ -710,7 +710,7 @@ git push origin feature/your-feature-name
 
 ---
 
-## 🚢 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 
@@ -747,7 +747,7 @@ pnpm prisma migrate deploy
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -767,13 +767,13 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Solana](https://solana.com/) - The blockchain platform
 - [Google ADK](https://github.com/google/agentic-ai-devkit) - Agent Development Kit
@@ -783,7 +783,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 📞 Contact & Support
+## Contact & Support
 
 - **GitHub**: [@fozagtx](https://github.com/fozagtx)
 - **Email**: fozagtx@gmail.com
@@ -795,6 +795,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ by [fozagtx](https://github.com/fozagtx)**
 
-[⭐ Star this repo](https://github.com/fozagtx/x402solana) • [🐛 Report Bug](https://github.com/fozagtx/x402solana/issues) • [💡 Request Feature](https://github.com/fozagtx/x402solana/issues)
+[Star this repo](https://github.com/fozagtx/x402solana) • [Report Bug](https://github.com/fozagtx/x402solana/issues) • [Request Feature](https://github.com/fozagtx/x402solana/issues)
 
 </div>
