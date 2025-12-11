@@ -9,8 +9,10 @@ import bcrypt from 'bcryptjs';
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   providers: [
+    // Email/Password authentication
     CredentialsProvider({
-      name: 'Credentials',
+      id: 'credentials',
+      name: 'Email & Password',
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
@@ -38,6 +40,45 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
+        };
+      },
+    }),
+    // Wallet authentication
+    CredentialsProvider({
+      id: 'wallet',
+      name: 'Solana Wallet',
+      credentials: {
+        publicKey: { label: 'Public Key', type: 'text' },
+        signature: { label: 'Signature', type: 'text' },
+        nonce: { label: 'Nonce', type: 'text' },
+      },
+      async authorize(credentials) {
+        if (!credentials?.publicKey || !credentials?.signature || !credentials?.nonce) {
+          return null;
+        }
+
+        // Verify the signature via our API
+        const verifyResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/wallet/verify`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            publicKey: credentials.publicKey,
+            signature: credentials.signature,
+            nonce: credentials.nonce,
+          }),
+        });
+
+        if (!verifyResponse.ok) {
+          return null;
+        }
+
+        const { user } = await verifyResponse.json();
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          walletAddress: user.walletAddress,
         };
       },
     }),
