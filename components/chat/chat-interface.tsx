@@ -26,7 +26,7 @@ interface ChatInterfaceProps {
   onPaymentRequest?: (invoiceId: string) => void;
 }
 
-export function ChatInterface({ agentId, onPaymentRequest }: ChatInterfaceProps) {
+export function ChatInterface({ onPaymentRequest }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "1",

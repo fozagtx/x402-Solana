@@ -2,51 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Wallet, LogOut } from "lucide-react";
-import { useMemo, useEffect, useState } from "react";
-
-// Dynamic import helper
-function safeRequire(moduleName: string): any {
-  if (typeof window === 'undefined') return null;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    return require(moduleName);
-  } catch {
-    return null;
-  }
-}
+import { useMemo } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 export function WalletButton() {
-  const [walletHooks, setWalletHooks] = useState<any>(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const walletAdapterReact = safeRequire("@solana/wallet-adapter-react");
-      const walletAdapterReactUI = safeRequire("@solana/wallet-adapter-react-ui");
-      
-      if (walletAdapterReact && walletAdapterReactUI) {
-        setWalletHooks({
-          useWallet: walletAdapterReact.useWallet,
-          useWalletModal: walletAdapterReactUI.useWalletModal,
-        });
-      }
-    }
-  }, []);
-
-  // If wallet adapters are not installed, show a message
-  if (!walletHooks) {
-    return (
-      <Button
-        disabled
-        className="rounded-full border-blue-500/50 bg-blue-950/40 text-blue-200"
-      >
-        <Wallet className="w-4 h-4 mr-2" />
-        Wallet Not Available
-      </Button>
-    );
-  }
-
-  const { useWallet, useWalletModal } = walletHooks;
-  const { wallet, publicKey, disconnect, connecting } = useWallet();
+  const { publicKey, disconnect, connecting } = useWallet();
   const { setVisible } = useWalletModal();
 
   const handleConnect = () => {
@@ -97,4 +58,3 @@ export function WalletButton() {
     </Button>
   );
 }
-
