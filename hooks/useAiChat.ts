@@ -69,7 +69,7 @@ export function useAiChat() {
     messagesRef.current = messages;
   }, [messages]);
 
-  const sendMessage = useCallback(async (text: string) => {
+  const sendMessage = useCallback(async (text: string, model?: string) => {
     const trimmed = text.trim();
     if (!trimmed) return;
 
@@ -92,7 +92,7 @@ export function useAiChat() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({ messages: history, model }),
       });
 
       if (!res.ok) {

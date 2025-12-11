@@ -8,6 +8,7 @@ import { buildTransaction } from "@/lib/sdk/payments/buildTransaction";
 import { submitAndConfirmTransaction, confirmPayment } from "@/lib/sdk/payments/confirmPayment";
 import { sendPaymentProof } from "@/lib/sdk/agents/sendPaymentProof";
 import { Button } from "@/components/ui/button";
+import { WalletButton } from "@/components/wallet/WalletButton";
 import { Wallet, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
 interface PayWithWalletProps {
@@ -116,16 +117,13 @@ export function PayWithWallet({ invoice, onSuccess, onError }: PayWithWalletProp
         <p className="font-mono text-sm text-blue-300 mb-3">
           Connect your wallet to pay
         </p>
-        <Button
-          onClick={() => {
-            // This will be handled by WalletButton component
-            setError("Please connect your wallet using the wallet button");
-          }}
-          className="rounded-full border-blue-500/50 bg-blue-900/50 text-blue-200 hover:bg-blue-800/50"
-        >
-          <Wallet className="w-4 h-4 mr-2" />
-          Connect Wallet
-        </Button>
+        <WalletButton />
+        {error && (
+          <div className="mt-3 p-3 rounded-lg bg-red-900/30 border border-red-500/50 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-red-400" />
+            <span className="font-mono text-xs text-red-300">{error}</span>
+          </div>
+        )}
       </div>
     );
   }

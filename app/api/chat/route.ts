@@ -21,7 +21,10 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { messages = [] } = (await req.json()) as { messages?: ChatMessage[] };
+    const { messages = [], model: selectedModel } = (await req.json()) as {
+      messages?: ChatMessage[];
+      model?: string;
+    };
 
     const chatMessages: ChatMessage[] = [
       { role: "system", content: systemPrompt },
@@ -32,7 +35,14 @@ export async function POST(req: Request) {
     ];
 
     const apiKey = process.env.OPENAI_API_KEY;
-    const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    // Map UI model names to OpenAI API model names
+    const modelMap: Record<string, string> = {
+      "GPT-4o": "gpt-4o",
+      "GPT-4": "gpt-4",
+      "GPT-3.5-turbo": "gpt-3.5-turbo",
+      "GPT-4o-mini": "gpt-4o-mini",
+    };
+    const model = modelMap[selectedModel] || process.env.OPENAI_MODEL || "gpt-4o-mini";
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {

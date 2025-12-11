@@ -12,13 +12,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface ChatInputProps {
-  onSend: (message: string) => Promise<void> | void;
+  onSend: (message: string, model?: string) => Promise<void> | void;
   disabled?: boolean;
 }
 
 export function ChatInput({ onSend, disabled }: ChatInputProps) {
   const [message, setMessage] = useState("");
-  const [selectedModel, setSelectedModel] = useState("GPT 4o");
+  const [selectedModel, setSelectedModel] = useState("GPT-4o");
   const [showCursor, setShowCursor] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
   const [typingText, setTypingText] = useState("");
@@ -99,7 +99,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
     if (!message.trim() || disabled) return;
     const value = message;
     setMessage("");
-    await onSend(value);
+    await onSend(value, selectedModel);
     setTimeout(() => {
       inputRef.current?.focus();
     }, 50);
@@ -123,21 +123,27 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
             <DropdownMenuContent className="bg-blue-950 border-blue-500/50">
               <DropdownMenuItem
                 className="text-blue-200 hover:bg-blue-900/50"
-                onClick={() => setSelectedModel("GPT 4o")}
+                onClick={() => setSelectedModel("GPT-4o")}
               >
-                GPT 4o
+                GPT-4o
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="text-blue-200 hover:bg-blue-900/50"
-                onClick={() => setSelectedModel("GPT 3.5")}
+                onClick={() => setSelectedModel("GPT-4")}
               >
-                GPT 3.5
+                GPT-4
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="text-blue-200 hover:bg-blue-900/50"
-                onClick={() => setSelectedModel("Claude")}
+                onClick={() => setSelectedModel("GPT-3.5-turbo")}
               >
-                Claude
+                GPT-3.5-turbo
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="text-blue-200 hover:bg-blue-900/50"
+                onClick={() => setSelectedModel("GPT-4o-mini")}
+              >
+                GPT-4o-mini
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
