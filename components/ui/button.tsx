@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue-950/40 border-blue-500/50 text-blue-200 hover:bg-blue-900/50 hover:border-blue-400/70 shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 [&_svg]:text-blue-300",
+        default: "bg-black border-gray-800 text-white hover:bg-gray-900 hover:border-gray-700 shadow-lg shadow-black/20 hover:shadow-black/30 [&_svg]:text-white",
       },
       size: {
         default: "h-12 px-6 text-sm",
@@ -43,11 +43,11 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     >
-      {/* Soft neon glow effect */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/0 via-blue-400/10 to-blue-500/0 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-      
+      {/* Soft hover glow effect */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-gray-700/0 via-gray-600/20 to-gray-700/0 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
       {/* Subtle inner shadow for depth */}
-      <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-[1px] rounded-full bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
 
       <Slottable>
         {children}

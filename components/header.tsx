@@ -1,49 +1,62 @@
 import Link from "next/link";
-import { Logo } from "./logo";
 import { MobileMenu } from "./mobile-menu";
 import { BookOpen, MessageSquare } from "lucide-react";
+import Image from "next/image";
 
 export const Header = () => {
   const navItems = [
     { name: "Docs", href: "/docs", icon: BookOpen },
     { name: "Chats", href: "/chat", icon: MessageSquare },
+    { name: "GitHub", href: "https://github.com/fozagtx/x402-Solana" },
   ];
 
   return (
-    <div className="fixed z-50 pt-4 sm:pt-8 md:pt-14 top-0 left-0 w-full">
-      <header className="flex items-center justify-between container">
-        <Link href="/">
-          <Logo className="w-[110px] sm:w-[140px] md:w-[160px]" />
-        </Link>
-        <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center justify-center gap-x-10">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link
-                className="flex items-center gap-2 uppercase font-mono text-blue-300 hover:text-blue-200 duration-150 transition-colors ease-out"
-                href={item.href}
-                key={item.name}
-              >
-                <Icon className="w-4 h-4" />
-                {item.name}
-              </Link>
-            );
-          })}
-          {["GitHub", "Telegram", "Contact"].map((item) => (
+    <div className="fixed z-50 top-6 left-1/2 -translate-x-1/2">
+      {/* Floating Navbar */}
+      <nav className="backdrop-blur-lg bg-white/95 border-2 border-gray-300 rounded-full px-6 py-3 shadow-xl shadow-gray-400/30 hover:shadow-2xl hover:shadow-gray-500/40 transition-all duration-300">
+        <div className="flex items-center gap-8">
+          {/* Solana Logo */}
+          <Link href="/" className="flex-shrink-0">
+            <Image
+              src="https://cryptologos.cc/logos/solana-sol-logo.svg"
+              alt="Solana"
+              width={32}
+              height={32}
+              className="w-8 h-8 sm:w-10 sm:h-10"
+            />
+          </Link>
+
+          {/* Navigation Links - Hidden on mobile */}
+          <div className="hidden lg:flex items-center gap-6">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  className="flex items-center gap-2 uppercase font-mono text-black hover:text-gray-700 duration-150 transition-colors ease-out text-sm font-semibold"
+                  href={item.href}
+                  key={item.name}
+                >
+                  {Icon && <Icon className="w-4 h-4" />}
+                  {item.name}
+                </Link>
+              );
+            })}
+
+            {/* Sign In */}
             <Link
-              className="uppercase inline-block font-mono text-blue-300 hover:text-blue-200 duration-150 transition-colors ease-out"
-              href={item === "GitHub" ? "https://github.com" : item === "Telegram" ? "https://telegram.org" : `#${item.toLowerCase()}`}
-              key={item}
+              className="uppercase transition-colors ease-out duration-150 font-mono text-black hover:text-gray-700 text-sm ml-2 pl-4 border-l border-gray-400 font-semibold"
+              href="/#sign-in"
             >
-              {item}
+              Sign In
             </Link>
-          ))}
-        </nav>
-        <Link className="uppercase max-lg:hidden transition-colors ease-out duration-150 font-mono text-primary hover:text-primary/80" href="/#sign-in">
-          Sign In
-        </Link>
-        <MobileMenu />
-      </header>
+          </div>
+
+          {/* Mobile Menu */}
+          <div className="lg:hidden">
+            <MobileMenu />
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };

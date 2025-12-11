@@ -16,9 +16,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
   const menuItems = [
     { name: "Docs", href: "/docs", icon: BookOpen },
     { name: "Chats", href: "/chat", icon: MessageSquare },
-    { name: "GitHub", href: "https://github.com", icon: null },
-    { name: "Telegram", href: "https://telegram.org", icon: null },
-    { name: "Contact", href: "#contact", icon: null },
+    { name: "GitHub", href: "https://github.com/fozagtx/x402-Solana", icon: null },
   ];
 
   const handleLinkClick = () => {
@@ -30,7 +28,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
       <Dialog.Trigger asChild>
         <button
           className={cn(
-            "group lg:hidden p-2 text-foreground transition-colors",
+            "group lg:hidden p-2 text-black hover:text-black/80 transition-colors",
             className
           )}
           aria-label="Open menu"
@@ -59,7 +57,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
         >
           <Dialog.Title className="sr-only">Menu</Dialog.Title>
 
-          <nav className="flex flex-col space-y-6 container mx-auto">
+          <nav className="flex flex-col space-y-6 container mx-auto bg-white/95 backdrop-blur-sm border-2 border-gray-300 rounded-lg p-6 shadow-xl shadow-gray-400/30">
             {menuItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -67,7 +65,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
                   key={item.name}
                   href={item.href}
                   onClick={handleLinkClick}
-                  className="flex items-center gap-3 text-xl font-mono uppercase text-blue-300 transition-colors ease-out duration-150 hover:text-blue-200 py-2"
+                  className="flex items-center gap-3 text-xl font-mono uppercase text-black transition-colors ease-out duration-150 hover:text-gray-700 py-2 font-semibold"
                 >
                   {Icon && <Icon className="w-5 h-5" />}
                   {item.name}
@@ -75,11 +73,11 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
               );
             })}
 
-            <div className="mt-6">
+            <div className="mt-6 pt-6 border-t-2 border-gray-300">
               <Link
                 href="/#sign-in"
                 onClick={handleLinkClick}
-                className="inline-block text-xl font-mono uppercase text-primary transition-colors ease-out duration-150 hover:text-primary/80 py-2"
+                className="inline-block text-xl font-mono uppercase text-black transition-colors ease-out duration-150 hover:text-gray-700 py-2 font-semibold"
               >
                 Sign In
               </Link>

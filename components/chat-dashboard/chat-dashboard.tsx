@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { Header } from "@/components/header";
-import { GL } from "@/components/gl";
-import { IntegrationBanner } from "./integration-banner";
 import { WelcomeSection } from "./welcome-section";
 import { FeatureCards } from "./feature-cards";
 import { ActionButtons } from "./action-buttons";
@@ -28,20 +26,16 @@ export function ChatDashboard() {
   } = useAdkChat();
 
   return (
-    <div className="min-h-screen bg-[#0a1628] relative overflow-hidden">
-      {/* Background particles effect */}
-      <GL hovering={hovering} />
-
+    <div className="min-h-screen relative overflow-hidden">
       <div className="relative z-10">
         <Header />
         
-        <div className="container pt-20 sm:pt-24 md:pt-32 pb-32 md:pb-48 space-y-6 sm:space-y-8">
-          <IntegrationBanner />
+        <div className="container pt-20 sm:pt-24 md:pt-32 pb-32 md:pb-48 space-y-4 sm:space-y-6 md:space-y-8 px-4 sm:px-6 lg:px-8">
           <WelcomeSection />
           <FeatureCards />
           <ActionButtons />
           <div>
-            <h2 className="text-blue-100 font-sentient text-xl mb-3">Live Agent Console</h2>
+            <h2 className="text-black font-serif text-lg sm:text-xl mb-3">Live Agent Console</h2>
             <ChatTranscript
               messages={messages}
               isProcessing={isProcessing}
@@ -55,11 +49,11 @@ export function ChatDashboard() {
         <div className="fixed bottom-0 left-0 right-0 z-20">
           {error && (
             <div className="container mb-2">
-              <div className="max-w-4xl mx-auto rounded-2xl border border-red-500/40 bg-red-900/20 text-red-100 font-mono text-xs flex items-center gap-2 px-4 py-2">
+              <div className="max-w-4xl mx-auto rounded-2xl border-2 border-red-200 bg-red-50 text-red-800 text-xs sm:text-sm flex items-center gap-2 px-3 sm:px-4 py-2 shadow-lg shadow-red-200/50">
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
                 <span className="flex-1">{error}</span>
                 <button
-                  className="text-red-200 underline decoration-dotted"
+                  className="text-red-600 underline decoration-dotted hover:text-red-800 transition-colors"
                   onClick={clearError}
                 >
                   dismiss

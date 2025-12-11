@@ -17,11 +17,11 @@
 }
 
 :root {
-  --background: #0a1628;
-  --foreground: #ffffff;
-  --primary: #FFC700;
+  --background: linear-gradient(135deg, #e6e3f7 0%, #d1c7e8 100%);
+  --foreground: #000000;
+  --primary: #6366f1;
   --primary-foreground: #ffffff;
-  --border: #1e3a5f;
+  --border: #c7d2fe;
 }
 
 @utility container {
@@ -46,6 +46,7 @@
 
   --font-mono: var(--font-geist-mono);
   --font-sentient: 'Sentient', sans-serif;
+  --font-serif: var(--font-crimson-pro);
 
   --shadow-glow: 0 0 8px 2px var(--tw-shadow-color);
 }
@@ -55,20 +56,9 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #e6e3f7 0%, #d1c7e8 100%);
+  min-height: 100vh;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#webgl {
-  top: 0;
-  left: 0;
-  position: fixed;
-  height: 100svh;
-  width: 100%;
-}
-
-#webgl canvas {
-  width: 100%;
-  height: 100%;
-}

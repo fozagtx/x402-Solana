@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { GL } from "./gl";
 import { Pill } from "./pill";
 import { Button } from "./ui/button";
 import { useState } from "react";
@@ -11,15 +10,13 @@ export function Hero() {
   const [hovering, setHovering] = useState(false);
   return (
     <div className="flex flex-col h-svh justify-between">
-      <GL hovering={hovering} />
 
       <div className="pb-16 mt-auto text-center relative">
-        <Pill className="mb-6">x402 Solana Integration Active</Pill>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sentient leading-tight">
-          Welcome to x402 on Solana <br />
-          <i className="font-light">AI-Powered Payments for the Autonomous Web</i>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif leading-tight text-black mb-8 max-w-4xl mx-auto">
+          x402 meets solana <br />
+          <span className="font-light italic">AI-Powered Payments for the Autonomous Web</span>
         </h1>
-        <p className="font-mono text-xs sm:text-sm md:text-base text-blue-300 text-balance mt-6 sm:mt-8 max-w-[640px] mx-auto px-4 sm:px-0">
+        <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
           Experience real on-chain payments, autonomous agents, and decentralized commerce — all powered by Solana, x402, MCP tools, and the Google ADK. Build, test, and deploy AI agents that can transact, charge, and verify payments — automatically.
         </p>
 
