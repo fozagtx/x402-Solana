@@ -56,12 +56,12 @@ export function LiveDemo() {
   };
 
   return (
-    <section id="demo" className="py-24 container">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-sentient mb-4">
+    <section id="demo" className="py-12 sm:py-16 lg:py-24 container px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif mb-4">
           Try an <i className="font-light">Autonomous Commerce Agent</i>
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-blue-300 text-balance max-w-2xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0">
+        <p className="font-mono text-xs sm:text-sm text-black/70 text-balance max-w-2xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0 leading-relaxed">
           Chat with an agent that can: take orders, generate invoices, ask for payment approval, trigger a real Solana transaction, verify confirmation, return receipt & explorer link. This is end-to-end AI-native payments powered by x402.
         </p>
       </div>
@@ -79,7 +79,7 @@ export function LiveDemo() {
             <div className="space-y-4">
               <div className="h-48 sm:h-64 overflow-y-auto border border-border rounded-lg p-3 sm:p-4 bg-background/30 space-y-2 sm:space-y-3">
                 {messages.length === 0 ? (
-                  <div className="text-center text-blue-400/60 font-mono text-sm py-8">
+                  <div className="text-center text-black/50 font-mono text-sm py-8">
                     Start a conversation by clicking an action below
                   </div>
                 ) : (
