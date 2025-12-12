@@ -41,15 +41,15 @@ export function Footer() {
           <p className="font-mono text-xs sm:text-sm text-black/80 text-center md:text-left">
             © {new Date().getFullYear()} x402Solana. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-mono text-black/80">
+          <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-mono text-black/70">
             <Link href="/privacy" className="hover:text-black transition-colors">
               Privacy
             </Link>
-            <span className="text-zinc-400/60">•</span>
+            <span className="text-black/40">•</span>
             <Link href="/terms" className="hover:text-black transition-colors">
               Terms
             </Link>
-            <span className="text-zinc-400/60">•</span>
+            <span className="text-black/40">•</span>
             <Link href="/cookies" className="hover:text-black transition-colors">
               Cookies
             </Link>

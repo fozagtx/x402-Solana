@@ -35,12 +35,12 @@ export function HowItWorks() {
     "border border-black/20 bg-white/50 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.12)]";
 
   return (
-    <section id="how-it-works" className="py-24 container">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-sentient mb-4">
+    <section id="how-it-works" className="py-12 sm:py-16 lg:py-24 container px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif mb-4">
           How It <i className="font-light">Works</i>
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-blue-300 text-balance max-w-2xl mx-auto px-4 sm:px-0">
+        <p className="font-mono text-xs sm:text-sm text-black/70 text-balance max-w-2xl mx-auto px-4 sm:px-0 leading-relaxed">
           A simple 4-step process for autonomous agent-to-agent commerce
         </p>
       </div>
@@ -52,13 +52,13 @@ export function HowItWorks() {
             <Card key={step.number} className={`${cardShell} relative`}>
               <CardHeader>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
-                  <span className="text-4xl font-sentient text-foreground/20">{step.number}</span>
+                  <span className="text-3xl sm:text-4xl font-serif text-black/20">{step.number}</span>
                 </div>
-                <CardTitle className="text-xl font-sentient">{step.title}</CardTitle>
-                <CardDescription className="font-mono text-sm">
+                <CardTitle className="text-lg sm:text-xl font-serif text-black">{step.title}</CardTitle>
+                <CardDescription className="font-mono text-xs sm:text-sm text-black/70">
                   {step.description}
                 </CardDescription>
               </CardHeader>
@@ -73,12 +73,12 @@ export function HowItWorks() {
       </div>
 
       <div className="text-center">
-        <Card className={`${cardShell} inline-block`}>
-          <CardContent className="p-6">
-            <p className="font-mono text-foreground/80">
+        <Card className={`${cardShell} inline-block max-w-full sm:max-w-none`}>
+          <CardContent className="p-4 sm:p-6">
+            <p className="font-mono text-xs sm:text-sm text-black/70">
               Issue item • Return digital asset • Unlock service • Provide receipt
             </p>
-            <p className="font-sentient text-xl mt-2 text-primary">Everything is automated.</p>
+            <p className="font-serif text-lg sm:text-xl mt-2 text-blue-600">Everything is automated.</p>
           </CardContent>
         </Card>
       </div>
