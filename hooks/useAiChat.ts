@@ -110,24 +110,28 @@ export function useAiChat() {
         createdAt: new Date().toISOString(),
       };
 
-      const nextMessages: ChatMessage[] = [...messagesRef.current, agentMessage];
+      // Use functional update to ensure we build on the latest state
+      // (fixes race condition where messagesRef.current could be stale)
+      setMessages((prev) => {
+        const nextMessages: ChatMessage[] = [...prev, agentMessage];
 
-      if (shouldCreateInvoice(trimmed)) {
-        const invoice = createInvoiceFromIntent(trimmed);
-        nextMessages.push({
-          id: `invoice-${invoice.invoiceId}`,
-          role: "agent",
-          type: "payment",
-          content: `Payment required: ${invoice.amount} ${invoice.token}`,
-          createdAt: new Date().toISOString(),
-          payment: {
-            invoice,
-            status: "pending",
-          },
-        });
-      }
+        if (shouldCreateInvoice(trimmed)) {
+          const invoice = createInvoiceFromIntent(trimmed);
+          nextMessages.push({
+            id: `invoice-${invoice.invoiceId}`,
+            role: "agent",
+            type: "payment",
+            content: `Payment required: ${invoice.amount} ${invoice.token}`,
+            createdAt: new Date().toISOString(),
+            payment: {
+              invoice,
+              status: "pending",
+            },
+          });
+        }
 
-      setMessages(nextMessages);
+        return nextMessages;
+      });
     } catch (err: any) {
       console.error("Chat error", err);
       setError(err?.message || "Failed to send message");
