@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "lint": "eslint \"src/**/*.ts\"",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint --config .eslintrc.json \"src/**/*.ts\"",
     "test": "vitest run",
     "prepublishOnly": "npm run build"
   },
@@ -27,6 +27,8 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
     "eslint": "^8.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.0",
