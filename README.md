@@ -10,30 +10,17 @@
 
 **Experience real on-chain payments, autonomous agents, and decentralized commerce - all powered by Solana, x402, MCP tools, and the Vercel AI SDK (OpenAI).**
 
-[Features](#-features) • [Quick Start](#-quick-start) • [Documentation](#-documentation) • [Architecture](#-architecture) • [Contributing](#-contributing)
+[Features](#-features) • [Quick Start](#-quick-start) • [SDK Usage](#-sdk-usage) • [Contributing](#-contributing)
 
 </div>
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
-- [Quick Start](#quick-start)
-- [Commands & Usage](#commands--usage)
-- [API Reference](#api-reference)
-- [SDK Usage](#sdk-usage)
-- [Examples](#examples)
-- [Development](#development)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
-##click to watch the demo video 
-[![Watch the video](https://img.youtube.com/vi/FMATquoDmS4/maxresdefault.jpg)](https://youtu.be/FMATquoDmS4)
+
+## 🎥 Demo
+
+Watch the demo: [https://youtu.be/FMATquoDmS4](https://youtu.be/FMATquoDmS4)
+
+---
 
 ## Overview
 
@@ -50,246 +37,55 @@
 
 ---
 
-## Features
+## ✨ Features
 
-### Core Features
-
-- **Landing Page**: Complete marketing site with hero, features, live demo, and documentation
 - **x402 Payment Protocol**: Invoice creation, payment requests, and verification
 - **Solana Integration**: Transaction creation, signing, and on-chain verification
 - **AI Agent Integration**: Client and merchant agent templates with chat UI (OpenAI via Vercel AI SDK)
 - **Authentication**: NextAuth.js with email/password
-- **User Dashboards**: Profile, API keys, and wallet management
-- **Merchant Dashboard**: Settings, invoices, and transaction management
+- **User & Merchant Dashboards**: Profile, API keys, wallet management, and transaction tracking
 - **Telegram Bot**: Webhook handler for Telegram integration
-- **SDK**: JavaScript/TypeScript SDK for easy integration
-- **Documentation**: Complete docs with quickstart guides
-- **Observability**: Logging, metrics, and audit trails
-
-### Advanced Features
-
+- **SDK**: JavaScript/TypeScript SDK for easy integration ([npm package](https://www.npmjs.com/package/@fozagtx/x402-sdk))
+- **Modern UI**: Glassmorphism design with Three.js particle effects
 - **Security**: Noncustodial wallet signing, anti-replay protection, invoice expiry
 - **Analytics**: Payment metrics, success rates, confirmation times
-- **Webhooks**: Real-time notifications for payment events
-- **Modern UI**: Glassmorphism design with Three.js particle effects
-- **Responsive**: Mobile-first design with adaptive layouts
-- **Dark Theme**: Beautiful blue-themed dark mode
 
 ---
 
-## Devnet Helpers (Wallet + Airdrop)
+## 📚 Tech Stack
 
-Quick scripts to get a funded devnet wallet for testing:
-
-```bash
-# Generate a new Solana keypair (prints public + secret; keep secret safe)
-pnpm keygen:solana
-
-# Airdrop SOL on devnet (customize address/amount/rpc)
-pnpm airdrop:solana --address <YOUR_DEVNET_PUBLIC_KEY> --amount 1 --rpc https://api.devnet.solana.com
-```
-
-Environment hints for devnet testing:
-- `NEXT_PUBLIC_SOLANA_NETWORK=devnet`
-- `NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com`
-- `NEXT_PUBLIC_MERCHANT_ADDRESS=<your devnet wallet>`
-- `NEXT_PUBLIC_PAYMENT_TOKEN=SOL` (or set a devnet USDC mint via `NEXT_PUBLIC_PAYMENT_TOKEN`/`NEXT_PUBLIC_USDC_MINT`)
-- `NEXT_PUBLIC_PAYMENT_AMOUNT=0.1`
-- `OPENAI_API_KEY=<your key>` for the chat agent
-
-After funding, connect your wallet in the chat page, ask to “buy …”, and use the PayWithWallet prompt to run an on-chain transaction.
+**Frontend:** Next.js 15, React 19, TypeScript, Tailwind CSS, Three.js, Radix UI  
+**Blockchain:** Solana Web3.js, SPL Token, Wallet Adapter  
+**Backend:** Node.js, Prisma, NextAuth.js, SQLite  
+**AI:** Vercel AI SDK (OpenAI)  
+**Tools:** Zod, Zustand, React Query, Lucide Icons
 
 ---
 
-## npm SDK
-
-The TypeScript SDK that powers agent-to-agent payments is published as [`@fozagtx/x402-sdk`](https://www.npmjs.com/package/@fozagtx/x402-sdk). Use it to invoice agents, build Solana transactions, tap Phantom/Solflare wallets, and integrate x402 flows inside your own apps.
-
-```bash
-npm install @fozagtx/x402-sdk @solana/web3.js
-# or
-pnpm add @fozagtx/x402-sdk @solana/web3.js
-```
-
-- Full TypeScript typings with Node + browser parity
-- Wallet-agnostic signer abstraction plus auto-detection helpers
-- Invoice helpers (`createInvoice`, `watchInvoice`) with retry/backoff + structured `X402Error` hooks
-- Example scripts: devnet Node flow + browser wallet demo in `sdk/examples/`
-
-## Tech Stack
-
-### Frontend
-
-![Next.js](https://img.shields.io/badge/Next.js-15.2.4-000000?style=flat&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.9-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
-![Three.js](https://img.shields.io/badge/Three.js-latest-000000?style=flat&logo=three.js&logoColor=white)
-![Radix UI](https://img.shields.io/badge/Radix_UI-Primitives-161618?style=flat&logo=radix-ui&logoColor=white)
-
-### Blockchain & Web3
-
-![Solana](https://img.shields.io/badge/Solana-Web3.js-14F195?style=flat&logo=solana&logoColor=white)
-![SPL Token](https://img.shields.io/badge/SPL_Token-0.4.14-14F195?style=flat&logo=solana&logoColor=white)
-![Wallet Adapter](https://img.shields.io/badge/Wallet_Adapter-0.15.35-14F195?style=flat&logo=solana&logoColor=white)
-
-### Backend
-
-![Node.js](https://img.shields.io/badge/Node.js-Latest-339933?style=flat&logo=node.js&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-6.19.0-2D3748?style=flat&logo=prisma&logoColor=white)
-![NextAuth.js](https://img.shields.io/badge/NextAuth.js-4.24.13-000000?style=flat&logo=next.js&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=flat&logo=sqlite&logoColor=white)
-
-### Tools & Libraries
-
-![Zod](https://img.shields.io/badge/Zod-3.25.67-3E63DD?style=flat&logo=zod&logoColor=white)
-![Zustand](https://img.shields.io/badge/Zustand-5.0.8-FF6B6B?style=flat)
-![React Query](https://img.shields.io/badge/React_Query-5.90.10-FF4154?style=flat&logo=react-query&logoColor=white)
-![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-0.454.0-FF6B6B?style=flat)
-
-### Development
-
-![ESLint](https://img.shields.io/badge/ESLint-Latest-4B32C3?style=flat&logo=eslint&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat&logo=typescript&logoColor=white)
-![pnpm](https://img.shields.io/badge/pnpm-Latest-F69220?style=flat&logo=pnpm&logoColor=white)
-
----
-
-## Architecture
-
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        A[Next.js App] --> B[React Components]
-        B --> C[Wallet Provider]
-        B --> D[Chat UI]
-        B --> E[Payment Flows]
-    end
-
-    subgraph "Agent Layer"
-        F[Client Agent] --> G[AI SDK Client]
-        H[Merchant Agent] --> G
-        G --> I[x402 Tools]
-        G --> J[Payment Tools]
-    end
-
-    subgraph "API Layer"
-        K[Next.js API Routes] --> L[Invoice API]
-        K --> M[Auth API]
-        K --> N[MCP Router]
-        K --> O[Telegram Webhook]
-    end
-
-    subgraph "Business Logic"
-        L --> P[x402 Service]
-        P --> Q[Invoice Manager]
-        P --> R[Payment Verifier]
-        N --> S[MCP Services]
-        S --> T[Merchant Service]
-        S --> U[Payment Service]
-    end
-
-    subgraph "Blockchain Layer"
-        V[Solana RPC] --> W[Transaction Builder]
-        W --> X[Wallet Signer]
-        X --> Y[Solana Network]
-        R --> Y
-    end
-
-    subgraph "Data Layer"
-        Z[Prisma ORM] --> AA[(SQLite Database)]
-        AA --> AB[Users]
-        AA --> AC[Merchants]
-        AA --> AD[Invoices]
-        AA --> AE[Sessions]
-    end
-
-    subgraph "External Services"
-        AF[AI SDK + OpenAI] --> G
-        AG[Telegram Bot] --> O
-        AH[Webhooks] --> T
-    end
-
-    A --> K
-    F --> K
-    H --> K
-    C --> X
-    E --> W
-    K --> Z
-    Q --> AA
-    R --> V
-    T --> AH
-    O --> AG
-    G --> AF
-
-    style A fill:#0a1628,stroke:#3b82f6,stroke-width:2px
-    style G fill:#14F195,stroke:#9945FF,stroke-width:2px
-    style P fill:#FF6B6B,stroke:#4ECDC4,stroke-width:2px
-    style Y fill:#9945FF,stroke:#14F195,stroke-width:2px
-    style AA fill:#2D3748,stroke:#48BB78,stroke-width:2px
-```
-
-### Component Flow
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Frontend
-    participant ClientAgent
-    participant API
-    participant MerchantAgent
-    participant Solana
-    participant Database
-
-    User->>Frontend: Request Payment
-    Frontend->>ClientAgent: Process Request
-    ClientAgent->>API: Create Invoice
-    API->>Database: Store Invoice
-    API->>MerchantAgent: Notify Payment Request
-    MerchantAgent->>API: Generate Payment Instructions
-    API->>Frontend: Return Payment Request
-    Frontend->>User: Show Payment UI
-    User->>Frontend: Approve & Sign
-    Frontend->>Solana: Submit Transaction
-    Solana-->>Frontend: Transaction Signature
-    Frontend->>API: Update Invoice Status
-    API->>Database: Mark Invoice as Paid
-    API->>MerchantAgent: Notify Payment Confirmed
-    MerchantAgent->>API: Complete Service
-    API-->>Frontend: Payment Confirmed
-    Frontend-->>User: Show Confirmation
-```
-
----
-
-## Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- **Node.js** 18+ ([Download](https://nodejs.org/))
-- **pnpm** ([Install](https://pnpm.io/installation))
-- **Git** ([Download](https://git-scm.com/))
-- **Solana CLI** (optional, for devnet testing)
+- Node.js 18+
+- pnpm
+- Git
 
 ### Installation
 
 1. **Clone the repository**
-
 ```bash
 git clone https://github.com/fozagtx/x402solana.git
 cd x402solana
 ```
 
 2. **Install dependencies**
-
 ```bash
 pnpm install
 ```
 
 3. **Set up environment variables**
 
-Create a `.env` file in the root directory:
-
+Create a `.env` file:
 ```env
 # Database
 DATABASE_URL="file:./prisma/dev.db"
@@ -302,10 +98,11 @@ NEXTAUTH_SECRET="your-secret-key-change-in-production"
 SOLANA_CLUSTER="devnet"
 SOLANA_RPC_URL="https://api.devnet.solana.com"
 
+# OpenAI (optional, for AI agent features)
+OPENAI_API_KEY="your-openai-api-key"
 ```
 
 4. **Set up the database**
-
 ```bash
 # Generate Prisma client
 pnpm prisma generate
@@ -318,210 +115,44 @@ pnpm prisma studio
 ```
 
 5. **Start the development server**
-
 ```bash
 pnpm dev
 ```
 
-The application will be available at `http://localhost:3000`
+Visit `http://localhost:3000`
 
 ---
 
-## Commands & Usage
+## 🧪 Devnet Testing
 
-### Development Commands
-
+Quick scripts to get a funded devnet wallet for testing:
 ```bash
-# Start development server
-pnpm dev
+# Generate a new Solana keypair (prints public + secret; keep secret safe)
+pnpm keygen:solana
 
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
-
-# Run linter
-pnpm lint
-
-# Type check
-pnpm type-check
+# Airdrop SOL on devnet
+pnpm airdrop:solana --address <YOUR_DEVNET_PUBLIC_KEY> --amount 1 --rpc https://api.devnet.solana.com
 ```
 
-### Database Commands
-
-```bash
-# Generate Prisma client
-pnpm prisma generate
-
-# Create new migration
-pnpm prisma migrate dev --name migration_name
-
-# Reset database (⚠️ deletes all data)
-pnpm prisma migrate reset
-
-# Open Prisma Studio (database GUI)
-pnpm prisma studio
-
-# Format Prisma schema
-pnpm prisma format
-
-# Validate Prisma schema
-pnpm prisma validate
+**Environment variables for devnet:**
+```env
+NEXT_PUBLIC_SOLANA_NETWORK=devnet
+NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com
+NEXT_PUBLIC_MERCHANT_ADDRESS=<your devnet wallet>
+NEXT_PUBLIC_PAYMENT_TOKEN=SOL
+NEXT_PUBLIC_PAYMENT_AMOUNT=0.1
+OPENAI_API_KEY=<your key>
 ```
 
-### Testing Commands
-
-```bash
-# Run tests (if configured)
-pnpm test
-
-# Run tests in watch mode
-pnpm test:watch
-
-# Run tests with coverage
-pnpm test:coverage
-```
-
-### Build & Deployment
-
-```bash
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
-
-# Analyze bundle size
-pnpm analyze
-```
+After funding, connect your wallet in the chat page, ask to "buy something", and use the PayWithWallet prompt to run an on-chain transaction.
 
 ---
 
-## API Reference
+## 📦 SDK Usage
 
-### Invoice Management
-
-#### Create Invoice
-
-```http
-POST /api/v1/invoices
-Content-Type: application/json
-
-{
-  "merchantId": "merchant-123",
-  "amount": "1.0",
-  "token": "USDC",
-  "metadata": {
-    "item": "Digital Product",
-    "description": "Premium access"
-  }
-}
-```
-
-**Response:**
-
-```json
-{
-  "id": "invoice-123",
-  "merchantId": "merchant-123",
-  "amount": "1.0",
-  "token": "USDC",
-  "status": "pending",
-  "expiresAt": "2024-01-01T12:00:00Z",
-  "nonce": "abc123...",
-  "createdAt": "2024-01-01T11:00:00Z"
-}
-```
-
-#### Get Invoice
-
-```http
-GET /api/v1/invoices/:id
-```
-
-#### List Invoices
-
-```http
-GET /api/v1/invoices?merchantId=merchant-123&status=pending&limit=10&offset=0
-```
-
-#### Update Invoice Status
-
-```http
-POST /api/v1/invoices/:id
-Content-Type: application/json
-
-{
-  "txSignature": "5j7s8...",
-  "status": "paid"
-}
-```
-
-### Webhook Management
-
-#### Register Webhook
-
-```http
-POST /api/v1/webhooks/register
-Content-Type: application/json
-
-{
-  "merchantId": "merchant-123",
-  "url": "https://example.com/webhook",
-  "events": ["invoice.paid", "invoice.expired"]
-}
-```
-
-### Agent Sessions
-
-#### List Sessions
-
-```http
-GET /api/v1/agents/:id/sessions
-```
-
-#### Create Session
-
-```http
-POST /api/v1/agents/:id/sessions
-Content-Type: application/json
-
-{
-  "traceEvents": [],
-  "artifacts": [],
-  "state": {}
-}
-```
-
-### Authentication
-
-#### Sign Up
-
-```http
-POST /api/auth/signup
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "password": "secure-password",
-  "name": "John Doe"
-}
-```
-
-#### NextAuth Endpoints
-
-- `GET /api/auth/signin` - Sign in page
-- `GET /api/auth/signout` - Sign out
-- `GET /api/auth/session` - Get current session
-- `POST /api/auth/csrf` - Get CSRF token
-
----
-
-## SDK Usage
+The TypeScript SDK is published as [`@fozagtx/x402-sdk`](https://www.npmjs.com/package/@fozagtx/x402-sdk).
 
 ### Installation
-
 ```bash
 npm install @fozagtx/x402-sdk @solana/web3.js
 # or
@@ -529,7 +160,6 @@ pnpm add @fozagtx/x402-sdk @solana/web3.js
 ```
 
 ### Basic Usage
-
 ```typescript
 import { createSDK } from '@fozagtx/x402-sdk';
 
@@ -543,6 +173,10 @@ const invoice = await sdk.createInvoice({
   merchantId: 'merchant-123',
   amount: '1.0',
   token: 'USDC',
+  metadata: {
+    item: 'Digital Product',
+    description: 'Premium access'
+  }
 });
 
 // Watch invoice status
@@ -554,30 +188,7 @@ const unwatch = await sdk.watchInvoice(invoice.id, (status) => {
 unwatch();
 ```
 
-### AI SDK (OpenAI)
-
-```typescript
-import { createClient } from 'ai';
-import { openai } from '@ai-sdk/openai';
-
-const client = createClient({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
-
-const res = await client.chat({
-  model: openai('gpt-4o-mini'),
-  messages: [{ role: 'user', content: 'Create an invoice for 5 USDC' }],
-});
-
-console.log(res.text);
-```
-
----
-
-## Examples
-
-### Example 1: Basic Payment Flow
-
+### Payment Flow Example
 ```typescript
 // 1. Create invoice
 const invoice = await sdk.createInvoice({
@@ -602,16 +213,20 @@ const signature = await sdk.submitTransaction(signedTx);
 const confirmation = await sdk.confirmPayment(invoice.id, signature);
 ```
 
-### Example 2: OpenAI Agent Chat
-
+### AI Agent Integration
 ```typescript
-const client = createClient({ apiKey: process.env.OPENAI_API_KEY! });
+import { createClient } from 'ai';
+import { openai } from '@ai-sdk/openai';
+
+const client = createClient({
+  apiKey: process.env.OPENAI_API_KEY!,
+});
 
 const res = await client.chat({
   model: openai('gpt-4o-mini'),
   messages: [
     { role: 'system', content: 'You are a Solana payments agent.' },
-    { role: 'user', content: 'Issue an invoice for 1 USDC' },
+    { role: 'user', content: 'Create an invoice for 5 USDC' }
   ],
 });
 
@@ -622,10 +237,29 @@ See the [`examples/`](./examples/) directory for more complete examples.
 
 ---
 
-## Development
+## 🔧 Development Commands
+```bash
+# Development
+pnpm dev              # Start development server
+pnpm build            # Build for production
+pnpm start            # Start production server
+pnpm lint             # Run linter
 
-### Project Structure
+# Database
+pnpm prisma generate  # Generate Prisma client
+pnpm prisma migrate dev --name migration_name  # Create migration
+pnpm prisma studio    # Open database GUI
+pnpm prisma format    # Format Prisma schema
 
+# Testing
+pnpm test             # Run tests
+pnpm test:watch       # Run tests in watch mode
+pnpm test:coverage    # Run tests with coverage
+```
+
+---
+
+## 📁 Project Structure
 ```
 x402solana/
 ├── app/                    # Next.js app directory
@@ -646,7 +280,7 @@ x402solana/
 │   ├── flows/             # Payment flow components
 │   └── ui/                # UI components (shadcn)
 ├── lib/                   # Library code
-│   ├── scripts/           # keygen + airdrop scripts for devnet
+│   ├── scripts/           # Keygen + airdrop scripts
 │   ├── solana/            # Solana integration
 │   ├── x402/              # x402 protocol
 │   ├── auth/              # Authentication config
@@ -661,74 +295,28 @@ x402solana/
 └── public/                # Static assets
 ```
 
-### Adding New Features
-
-1. **Create feature branch**
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-2. **Make changes and test**
-
-```bash
-pnpm dev
-# Test your changes
-```
-
-3. **Commit changes**
-
-```bash
-git add .
-git commit -m "feat: add your feature"
-```
-
-4. **Push and create PR**
-
-```bash
-git push origin feature/your-feature-name
-```
-
-### Code Style
-
-- Use TypeScript for all new code
-- Follow ESLint rules
-- Use Prettier for formatting
-- Write JSDoc comments for public APIs
-- Add tests for new features
-
 ---
 
-## Deployment
+## 🚀 Deployment
 
 ### Vercel (Recommended)
 
-1. **Push to GitHub**
+1. Push to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Configure environment variables
+4. Deploy!
 
-```bash
-git push origin main
-```
-
-2. **Import project in Vercel**
-
-- Go to [Vercel](https://vercel.com)
-- Click "New Project"
-- Import your GitHub repository
-- Configure environment variables
-- Deploy!
-
-### Environment Variables for Production
-
+### Production Environment Variables
 ```env
 DATABASE_URL="postgresql://..."
 NEXTAUTH_URL="https://yourdomain.com"
 NEXTAUTH_SECRET="your-production-secret"
 SOLANA_CLUSTER="mainnet-beta"
 SOLANA_RPC_URL="https://api.mainnet-beta.solana.com"
+OPENAI_API_KEY="your-openai-key"
 ```
 
 ### Database Migration
-
 ```bash
 # Run migrations in production
 pnpm prisma migrate deploy
@@ -736,7 +324,7 @@ pnpm prisma migrate deploy
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -746,23 +334,23 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Contribution Guidelines
+### Guidelines
 
 - Follow the existing code style
 - Add tests for new features
 - Update documentation as needed
 - Ensure all tests pass
-- Follow semantic commit messages
+- Use semantic commit messages (feat:, fix:, docs:, etc.)
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - [Solana](https://solana.com/) - The blockchain platform
 - [Vercel AI SDK](https://sdk.vercel.ai/docs) - AI SDK (OpenAI provider)
@@ -772,11 +360,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## Contact & Support
+## 📞 Contact & Support
 
 - **GitHub**: [@fozagtx](https://github.com/fozagtx)
-- **Email**: fozagtx@gmail.com
-- **Website**: [fozagtx.vercel.app](https://fozagtx.vercel.app)
 
 ---
 
@@ -784,6 +370,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ by [fozagtx](https://github.com/fozagtx)**
 
-[Star this repo](https://github.com/fozagtx/x402solana) • [Report Bug](https://github.com/fozagtx/x402solana/issues) • [Request Feature](https://github.com/fozagtx/x402solana/issues)
+[⭐ Star this repo](https://github.com/fozagtx/x402solana) • [🐛 Report Bug](https://github.com/fozagtx/x402solana/issues) • [✨ Request Feature](https://github.com/fozagtx/x402solana/issues)
 
 </div>
